@@ -11,38 +11,60 @@ class   relativity:
         self.directory  =   directory
 
         ###--------------------coordinates----------------------###
-        input_coordinates   =   pd.read_csv(directory["input_coordinates"], header=None)
+        input_coordinates   =   pd.read_csv(self.directory["input_coordinates"], header=None)
         input_coordinates   =   input_coordinates.values.tolist()  
-        var =   [ item[0] for item in input_coordinates ]
+        self.var =   [ item[0] for item in input_coordinates ]
 
-        n   =   len(var)
+        self.n   =   len(self.var)
 
         ###---------------------constants-----------------------###
-        input_constants     =   pd.read_csv(directory["input_constants"], header=None)
+        input_constants     =   pd.read_csv(self.directory["input_constants"], header=None)
         input_constants     =   input_constants.values.tolist()
-        cte =   [ item[0] for item in input_constants ]
+        self.cte =   [ item[0] for item in input_constants ]
 
-        ###-------------------metric_tensor---------------------###
-        input_metric_tensor =   pd.read_csv(directory["input_metric_tensor"], header=None)
+
+    ###########################################################
+    ###-------------------metric_tensor---------------------###
+    ###########################################################
+    def metric_tensor(self):
+        input_metric_tensor =   pd.read_csv(self.directory["input_metric_tensor"], header=None)
         input_metric_tensor =   input_metric_tensor.values.tolist()
-        
-        list_metric =   [ [ 0 for _ in range(n) ] for _ in range(n) ]
+
+        list_metric =   [ [ 0 for _ in range(self.n) ] for _ in range(self.n) ]
         itera   =   0
-        for i   in  range(n):
-            for j   in  range(n):
+        for i   in  range(self.n):
+            for j   in  range(self.n):
                 if  i   <=  j:
                     list_metric[i][j]   =   input_metric_tensor[itera][0]
                     list_metric[j][i]   =   input_metric_tensor[itera][0]
                     itera   =   itera   +   1
 
         data_metric_tensor  =   pd.DataFrame(list_metric)
-        self.metric_tensor  =   data_metric_tensor.to_csv(directory["metric_tensor"], index=False, header=None)
-        
-        ###---------------inverse_metric_tensor-----------------###
+        return  data_metric_tensor.to_csv(self.directory["metric_tensor"], index=False, header=None)
+    
+    ###########################################################
+    ###---------------inverse_metric_tensor-----------------###
+    ###########################################################
+    def inverse_metric(self):
+        list_metric =   pd.read_csv(self.directory["metric_tensor"], header=None).values.tolist()
         data_inverse_metric =   pd.DataFrame(sp.Matrix(list_metric).inv().tolist())
-        self.inverse_metric =   data_inverse_metric.to_csv(directory["inverse_metric"], index=False, header=None)
+        return  data_inverse_metric.to_csv(self.directory["inverse_metric"], index=False, header=None)
 
+    ###########################################################
+    ###---------------conexion_3_covariante-----------------###
+    ###########################################################
+    def christofell(self):
+        G   =   pd.read_csv(self.directory["metric_tensor"], header=None).values.tolist()
+        # G   =   sp.Matrix(G)
 
+        def conexion(k, j, i):
+            return   (
+                sp.diff(G[j][k], self.var[i])   + 
+                sp.diff(G[i][k], self.var[j])   - 
+                sp.diff(G[i][j], self.var[k])    
+            )/2
+
+        return print(conexion(0,1,1))
 
 
 ###########################################################
@@ -60,7 +82,7 @@ dir =   {
 }
 
 g   =   relativity(dir)
-g.metric_tensor
-g.inverse_metric
-
+# g.metric_tensor()
+# g.inverse_metric()
+g.christofell()
 
