@@ -57,14 +57,46 @@ class   relativity:
         G   =   pd.read_csv(self.directory["metric_tensor"], header=None).values.tolist()
         # G   =   sp.Matrix(G)
 
+        ###-------------------def_conexion----------------------###
         def conexion(k, j, i):
             return   (
                 sp.diff(G[j][k], self.var[i])   + 
                 sp.diff(G[i][k], self.var[j])   - 
                 sp.diff(G[i][j], self.var[k])    
             )/2
+        
+        ###--------------calculate_full_conexion----------------###
+        list_exterior   =   []
+        for k   in  range(self.n):
+            list_interior   =   [ [ 0 for _ in range(self.n) ] for _ in range(self.n) ]
+            
+            for j   in  range(self.n):
+                for i   in  range(self.n):
+                    if  j   <=  i:
+                        list_interior[j][i]   =   conexion(k, j, i)
+                        list_interior[i][j]   =   list_interior[j][i]
+            
+            list_exterior.append(list_interior)
+            list_interior   =   []
 
-        return print(conexion(0,1,1))
+        ###----------------save_data_in_.dat--------------------###
+        save    =   pd.DataFrame( { "arr": [list_exterior] } )
+        return  save.to_pickle(self.directory["christofell"])
+
+    ###########################################################
+    ###------------------Riemann_tensor---------------------###
+    ###########################################################
+    def riemann_tensor(self):
+
+        ###--------------import_metric_inverse------------------###
+        G_inv   =   pd.read_csv(self.directory["inverse_metric"], header=None).values.tolist()
+
+        ###-----------------import_conexion---------------------###
+        conexion   =   pd.read_pickle(self.directory["christofell"])
+        conexion   =   conexion.loc[0, "arr"]
+
+        return  print(G_inv)
+    
 
 
 ###########################################################
@@ -79,10 +111,14 @@ dir =   {
     "input_constants":      "intro_data/no_variables.dat",
     "metric_tensor":        "intro_data/metric_tensor.dat",
     "inverse_metric":       "intro_data/inverse_metric_tensor.dat",
+    "christofell":          "intro_data/symbol_christofell.dat",
+    "riemann_tensor":       "intro_data/riemann_tensor.dat",
 }
 
 g   =   relativity(dir)
 # g.metric_tensor()
 # g.inverse_metric()
-g.christofell()
+# g.christofell()
+g.riemann_tensor()
+
 
