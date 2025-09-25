@@ -39,23 +39,25 @@ class   relativity:
                     list_metric[j][i]   =   input_metric_tensor[itera][0]
                     itera   =   itera   +   1
 
-        data_metric_tensor  =   pd.DataFrame(list_metric)
-        return  data_metric_tensor.to_csv(self.directory["metric_tensor"], index=False, header=None)
+        save    =   pd.DataFrame( {"arr": [list_metric] } )
+        return  save.to_pickle(self.directory["metric_tensor"])
     
     ###########################################################
     ###---------------inverse_metric_tensor-----------------###
     ###########################################################
     def inverse_metric(self):
-        list_metric =   pd.read_csv(self.directory["metric_tensor"], header=None).values.tolist()
-        data_inverse_metric =   pd.DataFrame(sp.Matrix(list_metric).inv().tolist())
-        return  data_inverse_metric.to_csv(self.directory["inverse_metric"], index=False, header=None)
+        metric =   pd.read_pickle(self.directory["metric_tensor"])
+        metric =   metric.loc[0, "arr"]
+        inverse_metric =   sp.Matrix(metric).inv().tolist()
+        save    =   pd.DataFrame( { "arr": [inverse_metric] } )
+        return  save.to_pickle(self.directory["inverse_metric"])
 
     ###########################################################
     ###---------------conexion_3_covariante-----------------###
     ###########################################################
     def christofell(self):
-        G   =   pd.read_csv(self.directory["metric_tensor"], header=None).values.tolist()
-        # G   =   sp.Matrix(G)
+        G   =   pd.read_pickle(self.directory["metric_tensor"])
+        G   =   G.loc[0, "arr"]
 
         ###-------------------def_conexion----------------------###
         def conexion(k, j, i):
@@ -89,15 +91,35 @@ class   relativity:
     def riemann_tensor(self):
 
         ###--------------import_metric_inverse------------------###
-        G_inv   =   pd.read_csv(self.directory["inverse_metric"], header=None).values.tolist()
+        G_inv   =   pd.read_pickle(self.directory["inverse_metric"])
+        G_inv   =   G_inv.loc[0, "arr"]
 
         ###-----------------import_conexion---------------------###
-        conexion   =   pd.read_pickle(self.directory["christofell"])
-        conexion   =   conexion.loc[0, "arr"]
+        conexion    =   pd.read_pickle(self.directory["christofell"])
+        conexion    =   conexion.loc[0, "arr"]
 
-        return  print(G_inv)
+        ###----------------def_riemann_tensor-------------------###
+        def R(p,i,j,k):
+            return  (
+                sp.diff(conexion[p][i][k], self.var[j]) -
+                sp.diff(conexion[p][i][j], self.var[k]) +
+                sum([ 
+                    sum([ G_inv[q][m]*conexion[q][k][p]*conexion[m][i][j] for q in range(self.n) ]) 
+                    for m in range(self.n) 
+                ])   -
+                sum([
+                    sum([ G_inv[q][m]*conexion[q][j][p]*conexion[m][i][k] for q in range(self.n) ])
+                    for m in range(self.n) 
+                ])
+            )
+
+        ###------------calculate_full_riemann_tensor------------###
+        
+
+
+        ###----------------save_data_in_.dat--------------------###
+        return  print(R(0,1,0,1))
     
-
 
 ###########################################################
 ###-----------------texting_program---------------------###
@@ -116,9 +138,9 @@ dir =   {
 }
 
 g   =   relativity(dir)
-# g.metric_tensor()
-# g.inverse_metric()
-# g.christofell()
+g.metric_tensor()
+g.inverse_metric()
+g.christofell()
 g.riemann_tensor()
 
 
