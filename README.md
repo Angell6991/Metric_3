@@ -1,81 +1,29 @@
-# Metric3 app
+<h2 align="center"> Metric3 </h2>
 
-## Run the app
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Developer Information](#developer-information)
+- [Installation](#installation)
 
-### uv
 
-Run as a desktop app:
+##  Description 
+This repository is under construction
 
-```
-uv run flet run
-```
+##  Features
 
-Run as a web app:
+<!-- <p align="center"> -->
+<!--   <img src="src/storage/data/banner_imag.png"  width="700"> -->
+<!-- </p> -->
 
-```
-uv run flet run --web
-```
+##  Developer Information
+For now the app is only developed with Python:
 
-### Poetry
-
-Install dependencies from `pyproject.toml`:
-
-```
-poetry install
-```
-
-Run as a desktop app:
-
-```
-poetry run flet run
+```sh
+pip install pandas sympy flet
 ```
 
-Run as a web app:
+## Installation
+<!-- [APK download link](https://github.com/Angell6991/Nur_cal/releases/download/v0.1.0-beta/nur-cal.apk) -->
+Slimously more information
 
-```
-poetry run flet run --web
-```
-
-For more details on running the app, refer to the [Getting Started Guide](https://flet.dev/docs/getting-started/).
-
-## Build the app
-
-### Android
-
-```
-flet build apk -v
-```
-
-For more details on building and signing `.apk` or `.aab`, refer to the [Android Packaging Guide](https://flet.dev/docs/publish/android/).
-
-### iOS
-
-```
-flet build ipa -v
-```
-
-For more details on building and signing `.ipa`, refer to the [iOS Packaging Guide](https://flet.dev/docs/publish/ios/).
-
-### macOS
-
-```
-flet build macos -v
-```
-
-For more details on building macOS package, refer to the [macOS Packaging Guide](https://flet.dev/docs/publish/macos/).
-
-### Linux
-
-```
-flet build linux -v
-```
-
-For more details on building Linux package, refer to the [Linux Packaging Guide](https://flet.dev/docs/publish/linux/).
-
-### Windows
-
-```
-flet build windows -v
-```
-
-For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
