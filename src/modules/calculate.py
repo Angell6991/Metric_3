@@ -22,6 +22,19 @@ class   relativity:
         input_constants     =   input_constants.values.tolist()
         self.cte =   [ item[0] for item in input_constants ]
 
+    ###########################################################
+    ###-----------------save_coordinates--------------------###
+    ###########################################################
+    def save_coordinates(self):
+        save    =   pd.DataFrame( { "arr": [self.var] } )
+        return  save.to_pickle(self.directory["coordinates"])
+
+    ###########################################################
+    ###------------------save_constants---------------------###
+    ###########################################################
+    def save_constants(self):
+        save    =   pd.DataFrame( { "arr": [self.cte] } )
+        return  save.to_pickle(self.directory["constants"])
 
     ###########################################################
     ###-------------------metric_tensor---------------------###
@@ -204,6 +217,8 @@ class   relativity:
 #     "input_metric_tensor":  "intro_data/tensor_metrico.dat",
 #     "input_coordinates":    "intro_data/variables.dat",
 #     "input_constants":      "intro_data/no_variables.dat",
+#     "coordinates":          "intro_data/coordinates.dat",
+#     "constants":            "intro_data/constants.dat",
 #     "metric_tensor":        "intro_data/metric_tensor.dat",
 #     "inverse_metric":       "intro_data/inverse_metric_tensor.dat",
 #     "christofell":          "intro_data/symbol_christofell.dat",
@@ -213,6 +228,8 @@ class   relativity:
 # }
 
 # g   =   relativity(dir)
+# g.save_coordinates()
+# g.save_constants()
 # g.metric_tensor()
 # g.inverse_metric()
 # g.christofell()
