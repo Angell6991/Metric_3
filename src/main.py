@@ -47,8 +47,8 @@ def main(page: ft.Page):
 
     ###---------------------fonts--------------------------###
     page.fonts = {
-        "title":    "assets/fonts/angell-font.ttf",
-        "general":  "assets/fonts/angell-font.ttf",
+        "title":    "assets/fonts/NotoSerifDisplay-BoldItalic.ttf",
+        "general":  "assets/fonts/Ubuntu-R.ttf",
         "icons":    "assets/fonts/angell-font.ttf",
     }
     font    =   ["title", "general", "icons"]
@@ -59,11 +59,11 @@ def main(page: ft.Page):
     dimentions  =   [float(w), float(h)]
 
     ###--------------------------------------------------###
-    texto   =   ft.Text("a c l m g h x d", font_family=font[2], size=50, color=color[0])
-    cont    =   ft.Container(ft.Row([texto]), padding=10, bgcolor=color[3], border_radius=15)
-    
-    page.bgcolor    =   color[0]
-    return  page.add(cont)
+    # texto   =   ft.Text("a c l m g h x d", font_family=font[2], size=50, color=color[0])
+
+
+    page.bgcolor    =   color[3]
+    return  page.add()
 
 ft.app(main)
 
