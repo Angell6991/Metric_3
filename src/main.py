@@ -1,19 +1,26 @@
-# suport_data    =   os.path.join(os.getcwd(), ".metric3_data_list")
-# os.makedirs(suport_data, exist_ok=True)
-# dir_suport = suport_data
+import  flet    as  ft
+import  os
+
+##########################################################
+###-----------------create_directory-------------------###
+##########################################################
+
+###----------------rutas_de_diectorios-----------------###
+dir_suport  =   os.path.join(os.getcwd(), ".metric3_data")
+data_input  =   os.path.join(dir_suport, "input_data")
+data_save   =   os.path.join(dir_suport, "save_data")
+
+###----------------sí_existe_la_ruta-------------------###
+if  os.path.exists(dir_suport):
+    dir_suport = dir_suport
+
+###----------------sí_la_ruta_no_existe----------------###
+else:
+    os.makedirs(dir_suport, exist_ok=True)
+    os.makedirs(data_input, exist_ok=True)
+    os.makedirs(data_save, exist_ok=True)
 
 
-diccionary  =   {
-    "name":   "sara",
-    "age":    31,
-}
-
-print(diccionary["name"])
-print(diccionary["age"])
-
-
-
-# import flet as ft
 
 
 # def main(page: ft.Page):
