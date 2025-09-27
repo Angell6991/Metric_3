@@ -31,24 +31,40 @@ else:
             pass  
 
 ###--------------------colors--------------------------###
-
+color   =   [
+    "#e2e2e2", "#a6a6a6",  
+    "#2e2e2e", "#4a4a4a",
+    "#5AEDA3", "#37A66C",
+    "#ff44a0", "#00CCDE",
+]
 
 
 ##########################################################
 ###------------------create_app_flet-------------------###
 ##########################################################
 
-# def main(page: ft.Page):
+def main(page: ft.Page):
 
-#     page.fonts = {
-#         "open": "assets/fonts/angell-font.ttf",
-#     }
+    ###---------------------fonts--------------------------###
+    page.fonts = {
+        "title":    "assets/fonts/angell-font.ttf",
+        "general":  "assets/fonts/angell-font.ttf",
+        "icons":    "assets/fonts/angell-font.ttf",
+    }
+    font    =   ["title", "general", "icons"]
 
-#     texto   =   ft.Text("a c l m g h x d", font_family="open", size=50, color="#ffffff")
-#     cont    =   ft.Container(ft.Row([texto]), padding=10, bgcolor="#2e2e2e", border_radius=15)
+    ###--------------window_dimentions-------------------###
+    w   =   page.width      #   ancho
+    h   =   page.height     #   altura
+    dimentions  =   [float(w), float(h)]
 
-#     return  page.add(cont)
+    ###--------------------------------------------------###
+    texto   =   ft.Text("a c l m g h x d", font_family=font[2], size=50, color=color[0])
+    cont    =   ft.Container(ft.Row([texto]), padding=10, bgcolor=color[3], border_radius=15)
+    
+    page.bgcolor    =   color[0]
+    return  page.add(cont)
 
-# ft.app(main)
+ft.app(main)
 
 
