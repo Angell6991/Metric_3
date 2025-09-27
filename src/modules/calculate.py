@@ -7,18 +7,19 @@ import  sympy   as  sp
 
 class   relativity:
     
-    def __init__(self, directory):
-        self.directory  =   directory
+    def __init__(self, data_input, data_save):
+        self.data_input =   data_input
+        self.data_save  =   data_save
 
         ###--------------------coordinates----------------------###
-        input_coordinates   =   pd.read_csv(self.directory["input_coordinates"], header=None)
+        input_coordinates   =   pd.read_csv(self.data_input[0], header=None)
         input_coordinates   =   input_coordinates.values.tolist()  
         self.var =   [ item[0] for item in input_coordinates ]
 
         self.n   =   len(self.var)
 
         ###---------------------constants-----------------------###
-        input_constants     =   pd.read_csv(self.directory["input_constants"], header=None)
+        input_constants     =   pd.read_csv(self.data_input[1], header=None)
         input_constants     =   input_constants.values.tolist()
         self.cte =   [ item[0] for item in input_constants ]
 
@@ -27,20 +28,20 @@ class   relativity:
     ###########################################################
     def save_coordinates(self):
         save    =   pd.DataFrame( { "arr": [self.var] } )
-        return  save.to_pickle(self.directory["coordinates"])
+        return  save.to_pickle(self.data_save[0])
 
     ###########################################################
     ###------------------save_constants---------------------###
     ###########################################################
     def save_constants(self):
         save    =   pd.DataFrame( { "arr": [self.cte] } )
-        return  save.to_pickle(self.directory["constants"])
+        return  save.to_pickle(self.data_save[1])
 
     ###########################################################
     ###-------------------metric_tensor---------------------###
     ###########################################################
     def metric_tensor(self):
-        input_metric_tensor =   pd.read_csv(self.directory["input_metric_tensor"], header=None)
+        input_metric_tensor =   pd.read_csv(self.data_input[2], header=None)
         input_metric_tensor =   input_metric_tensor.values.tolist()
 
         list_metric =   [ [ 0 for _ in range(self.n) ] for _ in range(self.n) ]
@@ -53,23 +54,23 @@ class   relativity:
                     itera   =   itera   +   1
 
         save    =   pd.DataFrame( {"arr": [list_metric] } )
-        return  save.to_pickle(self.directory["metric_tensor"])
+        return  save.to_pickle(self.data_save[2])
     
     ###########################################################
     ###---------------inverse_metric_tensor-----------------###
     ###########################################################
     def inverse_metric(self):
-        metric =   pd.read_pickle(self.directory["metric_tensor"])
+        metric =   pd.read_pickle(self.data_save[2])
         metric =   metric.loc[0, "arr"]
         inverse_metric =   sp.Matrix(metric).inv().tolist()
         save    =   pd.DataFrame( { "arr": [inverse_metric] } )
-        return  save.to_pickle(self.directory["inverse_metric"])
+        return  save.to_pickle(self.data_save[3])
 
     ###########################################################
     ###---------------conexion_3_covariante-----------------###
     ###########################################################
     def christofell(self):
-        G   =   pd.read_pickle(self.directory["metric_tensor"])
+        G   =   pd.read_pickle(self.data_save[2])
         G   =   G.loc[0, "arr"]
 
         ###-------------------def_conexion----------------------###
@@ -96,7 +97,7 @@ class   relativity:
 
         ###----------------save_data_in_.dat--------------------###
         save    =   pd.DataFrame( { "arr": [list_exterior] } )
-        return  save.to_pickle(self.directory["christofell"])
+        return  save.to_pickle(self.data_save[4])
 
     ###########################################################
     ###------------------Riemann_tensor---------------------###
@@ -104,11 +105,11 @@ class   relativity:
     def riemann_tensor(self):
 
         ###--------------import_metric_inverse------------------###
-        G_inv   =   pd.read_pickle(self.directory["inverse_metric"])
+        G_inv   =   pd.read_pickle(self.data_save[3])
         G_inv   =   G_inv.loc[0, "arr"]
 
         ###-----------------import_conexion---------------------###
-        conexion    =   pd.read_pickle(self.directory["christofell"])
+        conexion    =   pd.read_pickle(self.data_save[4])
         conexion    =   conexion.loc[0, "arr"]
 
         ###----------------def_riemann_tensor-------------------###
@@ -149,7 +150,7 @@ class   relativity:
 
         ###----------------save_data_in_.dat--------------------###
         save    =   pd.DataFrame( { "arr": [list_exterior] } )
-        return  save.to_pickle(self.directory["riemann_tensor"])
+        return  save.to_pickle(self.data_save[5])
    
     ###########################################################
     ###--------------------Ricci_tensor---------------------###
@@ -157,11 +158,11 @@ class   relativity:
     def ricci_tensor(self):
 
         ###--------------import_metric_inverse------------------###
-        G_inv   =   pd.read_pickle(self.directory["inverse_metric"])
+        G_inv   =   pd.read_pickle(self.data_save[3])
         G_inv   =   G_inv.loc[0, "arr"]
 
         ###-----------------import_conexion---------------------###
-        riemann    =   pd.read_pickle(self.directory["riemann_tensor"])
+        riemann    =   pd.read_pickle(self.data_save[5])
         riemann    =   riemann.loc[0, "arr"]
         
         ###-----------------def_ricci_tensor--------------------###
@@ -184,7 +185,7 @@ class   relativity:
         
         ###----------------save_data_in_.dat--------------------###
         save    =   pd.DataFrame( { "arr": [list_ricci] } )
-        return  save.to_pickle(self.directory["ricci_tensor"])
+        return  save.to_pickle(self.data_save[6])
    
     ###########################################################
     ###------------------escalar_curvatura------------------###
@@ -192,11 +193,11 @@ class   relativity:
     def e_curvatura(self):
         
         ###--------------import_metric_inverse------------------###
-        G_inv   =   pd.read_pickle(self.directory["inverse_metric"])
+        G_inv   =   pd.read_pickle(self.data_save[3])
         G_inv   =   G_inv.loc[0, "arr"]
 
         ###---------------import_ricci_tensor-------------------###
-        ricci    =   pd.read_pickle(self.directory["ricci_tensor"])
+        ricci    =   pd.read_pickle(self.data_save[6])
         ricci    =   ricci.loc[0, "arr"]
         
         ###---------------calculate_escalar_c-------------------###
@@ -204,7 +205,7 @@ class   relativity:
 
         ###----------------save_data_in_.dat--------------------###
         save    =   pd.DataFrame( { "arr": [curvatura_e] } )
-        return  save.to_pickle(self.directory["escalar_curvatura"])
+        return  save.to_pickle(self.data_save[7])
 
 
 ###########################################################
@@ -213,21 +214,27 @@ class   relativity:
 # import  os
 # os.system("clear")
 
-# dir =   {
-#     "input_metric_tensor":  "intro_data/tensor_metrico.dat",
-#     "input_coordinates":    "intro_data/variables.dat",
-#     "input_constants":      "intro_data/no_variables.dat",
-#     "coordinates":          "intro_data/coordinates.dat",
-#     "constants":            "intro_data/constants.dat",
-#     "metric_tensor":        "intro_data/metric_tensor.dat",
-#     "inverse_metric":       "intro_data/inverse_metric_tensor.dat",
-#     "christofell":          "intro_data/symbol_christofell.dat",
-#     "riemann_tensor":       "intro_data/riemann_tensor.dat",
-#     "ricci_tensor":         "intro_data/ricci_tensor.dat",
-#     "escalar_curvatura":    "intro_data/escalar_curvatura.dat",
-# }
+# ###---------------directory_data_input------------------###
+# data_input  =   [
+#     "intro_data/variables.dat",
+#     "intro_data/no_variables.dat",
+#     "intro_data/tensor_metrico.dat",
+# ]
 
-# g   =   relativity(dir)
+# ###---------------direrctory_data_save------------------###
+# data_save   =   [
+#     "intro_data/coordinates.dat",
+#     "intro_data/constants.dat",
+#     "intro_data/metric_tensor.dat",
+#     "intro_data/inverse_metric_tensor.dat",
+#     "intro_data/symbol_christofell.dat",
+#     "intro_data/riemann_tensor.dat",
+#     "intro_data/ricci_tensor.dat",
+#     "intro_data/escalar_curvatura.dat",
+# ]
+
+# ###-----------------texting_functions-------------------###
+# g   =   relativity(data_input, data_save)
 # g.save_coordinates()
 # g.save_constants()
 # g.metric_tensor()
