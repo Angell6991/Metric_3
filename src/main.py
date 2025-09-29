@@ -34,8 +34,8 @@ else:
 color   =   [
     "#e2e2e2", "#a6a6a6",  
     "#2e2e2e", "#4a4a4a",
-    "#5AEDA3", "#aaffaa",
-    "#ff44a0", "#00CCDE",
+    "#80ff80", "#aaffaa",
+    "#FF4444", "#00CCDE",
 ]
 
 
@@ -59,7 +59,7 @@ def main(page: ft.Page):
     dimentions  =   [float(w), float(h)]
 
     ###--------------------------------------------------###
-    texto   =   ft.Text("a c l m g h x d", font_family=font[2], size=40, color=color[0])
+    texto   =   ft.Text("s u v w", font_family=font[2], size=40, color=color[0])
 
     def button(icon, label, colorr, action):
         button  =   ft.Container(
@@ -166,7 +166,7 @@ def main(page: ft.Page):
     )
 
 
-
+    ###--------------------------------------------------###
 
     page.bgcolor    =   color[3]
     page.padding    =   10
