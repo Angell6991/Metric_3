@@ -1,6 +1,6 @@
 import  flet    as  ft
 
-class   paga_main:
+class   page_main:
 
     def __init__(self, color, font, dimentions, dir_imagen):
 

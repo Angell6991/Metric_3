@@ -1,4 +1,4 @@
-import  modules.page_main   as  pgm
+import  modules.page_main   as  page_main
 
 import  flet    as  ft
 import  os
@@ -8,6 +8,8 @@ import  os
 ##########################################################
 
 ###----------------rutas_de_diectorios-----------------###
+dir_imagen_title    =   "assets/title.png"
+
 dir_suport  =   os.path.join(os.getcwd(), ".metric3_data")
 data_input  =   os.path.join(dir_suport, "input_data")
 data_save   =   os.path.join(dir_suport, "save_data")
@@ -15,10 +17,7 @@ data_save   =   os.path.join(dir_suport, "save_data")
 coordinates     =   os.path.join(data_input, "input_coordinates" + ".dat")
 constants       =   os.path.join(data_input, "input_constants" + ".dat")
 metric_tensor   =   os.path.join(data_input, "input_metric_tensor" + ".dat")
-
-data_intro  =   [coordinates, constants, metric_tensor]
-
-dir_imagen_title    =   "assets/title.png"
+data_intro      =   [coordinates, constants, metric_tensor]
 
 ###----------------sí_existe_la_ruta-------------------###
 if  os.path.exists(dir_suport):
@@ -63,18 +62,19 @@ def main(page: ft.Page):
     dimentions  =   [float(w), float(h)]
 
     ###-----------------construc_page--------------------###
-    texto   =   ft.Text("s u v w", font_family=font[2], size=40, color=color[0])
+    # texto   =   ft.Text("s u v w", font_family=font[2], size=40, color=color[0])
 
-    class_pgm   =   pgm.paga_main(color, font, dimentions, dir_imagen_title)  
-    page_main   =   class_pgm.page_main
+    pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title)  
+    page_main_bring   =   pgm.page_main
 
+    
     ###--------------------------------------------------###
 
     page.bgcolor    =   color[3]
     page.padding    =   10
     # page.vertical_alignment = ft.MainAxisAlignment.CENTER
     # page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    return  page.add(page_main)
+    return  page.add(page_main_bring)
 
 ft.app(main)
 
