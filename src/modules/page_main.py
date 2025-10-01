@@ -46,17 +46,27 @@ class   page_main:
         ##########################################################
 
         ###------------------construc_box_title----------------###
-        imagen  =   ft.Image(src=str(dir_imagen), width=dimentions[0]*0.6)
-        title   =   ft.Text("Metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.07)
-        box_title   =   ft.Container(
-            content=ft.Column(
-                controls=[imagen, title], 
-                alignment=ft.MainAxisAlignment.CENTER,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            ),
+        imagen  =   ft.Container(
+            ft.Image(src=str(dir_imagen), width=dimentions[0]*0.6),
+            shadow=ft.BoxShadow(color=color[2], blur_radius=10),
             bgcolor=color[2], 
             border_radius=15, 
-            padding=0,
+            padding=10,       
+        )
+        title   =   ft.Container(
+            ft.Text("Metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.04),
+            padding=ft.padding.only(left=0, right=10, top=0, bottom=0),       
+        )
+        box_title   =   ft.Container(
+            content=ft.Column(
+                controls=[title, imagen], 
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.END,
+                spacing=5
+            ),
+            bgcolor=color[3], 
+            border_radius=15, 
+            padding=5,
         )
 
         ###-----------------construc_box_buttons---------------###
@@ -90,16 +100,13 @@ class   page_main:
 
         ###---------------construc_button_calculate------------###
         calculate   =   ft.Container(
-            content=ft.TextButton(
-                    content=ft.Text("a", font_family=font[2], size=dimentions[0]*0.1, color=color[2]), 
-                    on_click=None,
-                    tooltip="Calculate",
-                    style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10), padding=3),
-                ),
-                shadow=ft.BoxShadow(color=color[5], blur_radius=3),
-                bgcolor=color[5],
-                padding=2,
-                border_radius=10,
+            content= ft.Column([]),
+            bgcolor=color[3],
+            padding=2,
+            border_radius=50,
+            on_click=None,
+            width=dimentions[0]*0.12,
+            height=dimentions[1]*0.15,
         )
 
         ###---------------construc_button_git_hub--------------###
@@ -113,8 +120,16 @@ class   page_main:
         ##########################################################
         ###------------------construc_page_main----------------###
         ##########################################################
+        box_buttons_and_calculate   =   ft.Container(
+            content=ft.Row(
+                controls=[box_buttons, ft.Container(content=ft.Column([calculate,git_hub]))],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=dimentions[0]*0.05
+            )
+        )
+
         page_main   =   ft.Column(
-            controls=[box_title, box_buttons, calculate, git_hub],
+            controls=[box_title, box_buttons_and_calculate],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=dimentions[1]*0.05,
