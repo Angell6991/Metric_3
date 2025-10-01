@@ -113,20 +113,6 @@ class   page_main:
         ##########################################################
         ###------------------construc_page_main----------------###
         ##########################################################
-        # page_main  =   ft.Container(
-        #     content=ft.Column(
-        #         controls=[box_title, box_buttons, calculate, git_hub],
-        #         alignment=ft.MainAxisAlignment.CENTER,
-        #         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        #         spacing=dimentions[1]*0.05,
-        #     ),
-        #     bgcolor=color[2], 
-        #     border_radius=15, 
-        #     padding=10,
-        #     width=dimentions[0],
-        #     height=dimentions[1],
-        # )
-
         page_main   =   ft.Column(
             controls=[box_title, box_buttons, calculate, git_hub],
             alignment=ft.MainAxisAlignment.CENTER,

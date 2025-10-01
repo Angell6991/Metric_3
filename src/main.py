@@ -67,18 +67,18 @@ def main(page: ft.Page):
     
     ###--------------------------------------------------###
     def contraccion_container_rigth(e):
-        container_right.width   =   dimentions[0]*0.09
+        container_right.width   =   dimentions[0]*0.5
         container_right.height  =   dimentions[1]*0.9
-        container_right.border_radius   =   15
+        container_right.border_radius   =   ft.border_radius.only(top_left=15, top_right=0, bottom_left=15, bottom_right=0)
 
-        container_left.width    =   dimentions[0]*0.8
-        container_right.content =   ft.Column([])
+        container_left.width    =   dimentions[0]*0.87
+        container_right.content =   ft.Column([boton_back_expan])
         return  page.update()
 
     def expan_container_rigth(e):
-        container_right.width   =   dimentions[0]
-        container_right.height  =   dimentions[1]
-        container_right.border_radius   =   0
+        container_right.width   =   dimentions[0]*0.9
+        container_right.height  =   dimentions[1]*0.9
+        container_right.border_radius   =   15
         
         container_left.width    =   dimentions[0]*0
         container_right.content =   page_main_bring
@@ -90,23 +90,30 @@ def main(page: ft.Page):
     page_main_bring   =   pgm.page_main
 
     ###--------------------------------------------------###
-    boton_back  =   ft.FilledButton("back", on_click=expan_container_rigth)
+    boton_back_expan  =   ft.Container(
+        content=ft.Text("u", font_family=font[2], size=dimentions[0]*0.07, color=color[3]), 
+        on_click=expan_container_rigth,
+        padding=10,
+        alignment=ft.alignment.center_left,
+        expand=True
+    )
 
     container_left  =   ft.Container(
-        content=ft.Row([boton_back]), 
+        content=ft.Row([]), 
         bgcolor=color[3], 
         padding=10,
         width=dimentions[0]*0,
         height=dimentions[1],
-        animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+        animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
     )
     container_right =   ft.Container(
         content=page_main_bring, 
         bgcolor=color[2], 
         padding=0,
-        width=dimentions[0],
-        height=dimentions[1],
-        animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+        width=dimentions[0]*0.9,
+        height=dimentions[1]*0.9,
+        border_radius=15,
+        animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
     )
     container_main  =   ft.Container(
         content=ft.Row(
