@@ -2,7 +2,7 @@ import  flet    as  ft
 
 class   page_main:
 
-    def __init__(self, color, font, dimentions, dir_imagen):
+    def __init__(self, color, font, dimentions, dir_imagen, data_button_action):
 
         ##########################################################
         ###--------------------def_fuctions--------------------###
@@ -71,7 +71,7 @@ class   page_main:
         down  =   ft.Row(
             controls=[
                 button("c", "Constants", color[1], None), 
-                button_glass("d", "Data base", color[2], None)
+                button_glass("d", "Data base", color[2], data_button_action)
             ], 
             alignment=ft.MainAxisAlignment.CENTER,
             tight=True
@@ -113,18 +113,25 @@ class   page_main:
         ##########################################################
         ###------------------construc_page_main----------------###
         ##########################################################
-        page_main  =   ft.Container(
-            content=ft.Column(
-                controls=[box_title, box_buttons, calculate, git_hub],
-                alignment=ft.MainAxisAlignment.CENTER,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=dimentions[1]*0.05,
-            ),
-            bgcolor=color[2], 
-            border_radius=15, 
-            padding=10,
-            width=dimentions[0],
-            height=dimentions[1],
+        # page_main  =   ft.Container(
+        #     content=ft.Column(
+        #         controls=[box_title, box_buttons, calculate, git_hub],
+        #         alignment=ft.MainAxisAlignment.CENTER,
+        #         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+        #         spacing=dimentions[1]*0.05,
+        #     ),
+        #     bgcolor=color[2], 
+        #     border_radius=15, 
+        #     padding=10,
+        #     width=dimentions[0],
+        #     height=dimentions[1],
+        # )
+
+        page_main   =   ft.Column(
+            controls=[box_title, box_buttons, calculate, git_hub],
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=dimentions[1]*0.05,
         )
 
         ###---------------------return_class-------------------###

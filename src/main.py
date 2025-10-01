@@ -64,17 +64,67 @@ def main(page: ft.Page):
     ###-----------------construc_page--------------------###
     # texto   =   ft.Text("s u v w", font_family=font[2], size=40, color=color[0])
 
-    pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title)  
-    page_main_bring   =   pgm.page_main
-
     
     ###--------------------------------------------------###
+    def contraccion_container_rigth(e):
+        container_right.width   =   dimentions[0]*0.09
+        container_right.height  =   dimentions[1]*0.9
+        container_right.border_radius   =   15
+
+        container_left.width    =   dimentions[0]*0.8
+        container_right.content =   ft.Column([])
+        return  page.update()
+
+    def expan_container_rigth(e):
+        container_right.width   =   dimentions[0]
+        container_right.height  =   dimentions[1]
+        container_right.border_radius   =   0
+        
+        container_left.width    =   dimentions[0]*0
+        container_right.content =   page_main_bring
+        return  page.update()
+
+
+    ###--------------------------------------------------###
+    pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, contraccion_container_rigth)  
+    page_main_bring   =   pgm.page_main
+
+    ###--------------------------------------------------###
+    boton_back  =   ft.FilledButton("back", on_click=expan_container_rigth)
+
+    container_left  =   ft.Container(
+        content=ft.Row([boton_back]), 
+        bgcolor=color[3], 
+        padding=10,
+        width=dimentions[0]*0,
+        height=dimentions[1],
+        animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+    )
+    container_right =   ft.Container(
+        content=page_main_bring, 
+        bgcolor=color[2], 
+        padding=0,
+        width=dimentions[0],
+        height=dimentions[1],
+        animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+    )
+    container_main  =   ft.Container(
+        content=ft.Row(
+            [container_left, container_right], 
+            alignment=ft.MainAxisAlignment.CENTER, 
+            spacing=0,
+        ), 
+        padding=0
+    )
+
+    ###--------------------------------------------------###
+
 
     page.bgcolor    =   color[3]
-    page.padding    =   10
+    page.padding    =   0
     # page.vertical_alignment = ft.MainAxisAlignment.CENTER
     # page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    return  page.add(page_main_bring)
+    return  page.add(container_main)
 
 ft.app(main)
 
