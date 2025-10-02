@@ -1,4 +1,5 @@
 import  modules.page_main   as  page_main
+import  modules.page_data   as  page_data
 
 import  flet    as  ft
 import  os
@@ -9,6 +10,7 @@ import  os
 
 ###----------------rutas_de_diectorios-----------------###
 dir_imagen_title    =   "assets/title.png"
+dir_imagen_data     =   "assets/time_space_logo.png"
 
 dir_suport  =   os.path.join(os.getcwd(), ".metric3_data")
 data_input  =   os.path.join(dir_suport, "input_data")
@@ -87,7 +89,11 @@ def main(page: ft.Page):
 
     ###--------------------------------------------------###
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, contraccion_container_rigth)  
-    page_main_bring   =   pgm.page_main
+    page_main_bring =   pgm.page_main
+
+    pgd =   page_data.page_data(color, font, dimentions, dir_imagen_data)
+    page_data_bring =   pgd.page_data
+    pgd.page    =  page 
 
     ###--------------------------------------------------###
     boton_back_expan  =   ft.Container(
@@ -99,7 +105,7 @@ def main(page: ft.Page):
     )
 
     container_left  =   ft.Container(
-        content=ft.Row([]), 
+        content=ft.Row([page_data_bring]), 
         bgcolor=color[3], 
         padding=10,
         width=dimentions[0]*0,
@@ -126,11 +132,9 @@ def main(page: ft.Page):
 
     ###--------------------------------------------------###
 
-
+    page.theme_mode =   "LIGHT"
     page.bgcolor    =   color[3]
     page.padding    =   0
-    # page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    # page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     return  page.add(container_main)
 
 ft.app(main)

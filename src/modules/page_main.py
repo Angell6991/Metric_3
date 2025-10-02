@@ -55,7 +55,7 @@ class   page_main:
         )
         title   =   ft.Container(
             ft.Text("Metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.04),
-            padding=ft.padding.only(left=0, right=10, top=0, bottom=0),       
+            padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
             content=ft.Column(
@@ -121,9 +121,18 @@ class   page_main:
         ###------------------construc_page_main----------------###
         ##########################################################
         box_buttons_and_calculate   =   ft.Container(
-            content=ft.Row(
-                controls=[box_buttons, ft.Container(content=ft.Column([calculate,git_hub]))],
+            content=ft.Column(
+                controls=[
+                    box_buttons, 
+                    ft.Container(
+                        content=ft.Column([calculate,git_hub], 
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER 
+                        )
+                    )
+                ],
                 alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 spacing=dimentions[0]*0.05
             )
         )
