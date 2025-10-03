@@ -63,11 +63,10 @@ def main(page: ft.Page):
     h   =   page.height     #   altura
     dimentions  =   [float(w), float(h)]
 
-    ###-----------------construc_page--------------------###
-    # texto   =   ft.Text("s u v w", font_family=font[2], size=40, color=color[0])
 
-    
-    ###--------------------------------------------------###
+    ########################################################
+    ###----------------def_functions---------------------###
+    ########################################################
     def contraccion_container_rigth(e):
         container_right.width   =   dimentions[0]*0.5
         container_right.height  =   dimentions[1]*0.9
@@ -87,7 +86,9 @@ def main(page: ft.Page):
         return  page.update()
 
 
-    ###--------------------------------------------------###
+    ########################################################
+    ###--------------import_dependencies-----------------###
+    ########################################################
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, contraccion_container_rigth)  
     page_main_bring =   pgm.page_main
 
@@ -95,7 +96,10 @@ def main(page: ft.Page):
     page_data_bring =   pgd.page_data
     pgd.page    =  page 
 
-    ###--------------------------------------------------###
+
+    ########################################################
+    ###-----------------construc_page--------------------###
+    ########################################################
     boton_back_expan  =   ft.Container(
         content=ft.Text("u", font_family=font[2], size=dimentions[0]*0.07, color=color[3]), 
         on_click=expan_container_rigth,
@@ -130,8 +134,7 @@ def main(page: ft.Page):
         padding=0
     )
 
-    ###--------------------------------------------------###
-
+    ###-----------------page_settings--------------------###
     page.theme_mode =   "LIGHT"
     page.bgcolor    =   color[3]
     page.padding    =   0
