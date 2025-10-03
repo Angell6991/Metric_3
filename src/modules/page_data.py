@@ -10,7 +10,7 @@ class   page_data:
         ##########################################################
         def contraccion_container_up(e):
             box_up.height   =   dimentions[1]*0.45
-            box_down.height =   dimentions[1]*0.435
+            box_down.height =   dimentions[1]*0.43
             box_up.content  =   ft.Column([box_title, boton_back_expan])
             return  self.page.update()
 
@@ -44,7 +44,7 @@ class   page_data:
             padding=10,       
         )
         title   =   ft.Container(
-            ft.Text("Data base", font_family=font[0], color=color[5], size=dimentions[0]*0.04),
+            ft.Text("data base", font_family=font[0], color=color[7], size=dimentions[0]*0.03),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
@@ -86,7 +86,7 @@ class   page_data:
         ###------------------construc_page_data----------------###
         ##########################################################
         page_data =   ft.Container(
-            content=ft.Column([box_up, box_down]), 
+            content=ft.Column([box_up, box_down], spacing=dimentions[1]*0.02), 
             padding=0,
             width=dimentions[0]*0.82,
             height=dimentions[1]*0.9,

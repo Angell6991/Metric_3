@@ -52,7 +52,7 @@ def main(page: ft.Page):
 
     ###---------------------fonts--------------------------###
     page.fonts = {
-        "title":    "assets/fonts/NotoSerifDisplay-BoldItalic.ttf",
+        "title":    "assets/fonts/frank-font.ttf",
         "general":  "assets/fonts/Ubuntu-R.ttf",
         "icons":    "assets/fonts/angell-font.ttf",
     }

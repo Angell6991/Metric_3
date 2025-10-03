@@ -54,7 +54,7 @@ class   page_main:
             padding=10,       
         )
         title   =   ft.Container(
-            ft.Text("Metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.04),
+            ft.Text("metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.03),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
