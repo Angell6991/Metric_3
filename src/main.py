@@ -1,5 +1,6 @@
 import  modules.page_main   as  page_main
 import  modules.page_data   as  page_data
+import  modules.page_save   as  page_save
 
 import  flet    as  ft
 import  os
@@ -89,7 +90,15 @@ def main(page: ft.Page):
     ########################################################
     ###--------------import_dependencies-----------------###
     ########################################################
-    actions_buttons_main    =   [None, None, None, contraccion_container_rigth]
+    pgs =   page_save.page_save(color, font, dimentions, data_intro)
+    pgs.page    =   page
+
+    actions_buttons_main    =   [
+        lambda  e:  pgs.float_window(), 
+        None, 
+        None, 
+        contraccion_container_rigth
+    ]
 
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  
     page_main_bring =   pgm.page_main
