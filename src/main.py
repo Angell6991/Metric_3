@@ -89,8 +89,11 @@ def main(page: ft.Page):
     ########################################################
     ###--------------import_dependencies-----------------###
     ########################################################
-    pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, contraccion_container_rigth)  
+    actions_buttons_main    =   [None, None, None, contraccion_container_rigth]
+
+    pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  
     page_main_bring =   pgm.page_main
+    pgm.page    =   page
 
     pgd =   page_data.page_data(color, font, dimentions, dir_imagen_data)
     page_data_bring =   pgd.page_data

@@ -3,6 +3,7 @@ import  flet    as  ft
 class   page_main:
 
     def __init__(self, color, font, dimentions, dir_imagen, data_button_action):
+        self.page   =   None
 
         ##########################################################
         ###--------------------def_fuctions--------------------###
@@ -72,16 +73,16 @@ class   page_main:
         ###-----------------construc_box_buttons---------------###
         up  =   ft.Row(
             controls=[
-                button("x", "Coordinates", color[1], None), 
-                button("g", "Metric tensor", color[1], None)
+                button("x", "Coordinates", color[1], data_button_action[0]), 
+                button("g", "Metric tensor", color[1], data_button_action[1])
             ], 
             alignment=ft.MainAxisAlignment.CENTER,
             tight=True
         )
         down  =   ft.Row(
             controls=[
-                button("c", "Constants", color[1], None), 
-                button_glass("d", "Data base", color[2], data_button_action)
+                button("c", "Constants", color[1], data_button_action[2]), 
+                button_glass("d", "Data base", color[2], data_button_action[3])
             ], 
             alignment=ft.MainAxisAlignment.CENTER,
             tight=True
