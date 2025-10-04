@@ -94,10 +94,10 @@ def main(page: ft.Page):
     pgs.page    =   page
 
     actions_buttons_main    =   [
-        lambda  e:  pgs.float_window(), 
-        None, 
-        None, 
-        contraccion_container_rigth
+        lambda  e:  pgs.float_window("coordinates"), 
+        lambda  e:  pgs.float_window("metric_tensor"), 
+        lambda  e:  pgs.float_window("constants"), 
+        contraccion_container_rigth,
     ]
 
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  
