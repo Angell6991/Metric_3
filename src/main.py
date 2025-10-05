@@ -1,6 +1,7 @@
 import  modules.page_main   as  page_main
 import  modules.page_data   as  page_data
 import  modules.page_save   as  page_save
+import  modules.page_float  as  page_float
 
 import  flet    as  ft
 import  os
@@ -90,6 +91,9 @@ def main(page: ft.Page):
     ########################################################
     ###--------------import_dependencies-----------------###
     ########################################################
+    pgf =   page_float.page_float(color, font, dimentions, data_intro, data_save)
+    pgf.page    =   page
+
     pgs =   page_save.page_save(color, font, dimentions, data_intro)
     pgs.page    =   page
 
@@ -98,6 +102,7 @@ def main(page: ft.Page):
         lambda  e:  pgs.float_window("metric_tensor"), 
         lambda  e:  pgs.float_window("constants"), 
         contraccion_container_rigth,
+        pgf.button_calculate()
     ]
 
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  

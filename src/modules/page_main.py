@@ -101,13 +101,11 @@ class   page_main:
 
         ###---------------construc_button_calculate------------###
         calculate   =   ft.Container(
-            content= ft.Column([]),
+            content=data_button_action[4],
             bgcolor=color[3],
             padding=2,
             border_radius=50,
             on_click=None,
-            width=dimentions[0]*0.12,
-            height=dimentions[1]*0.15,
         )
 
         ###---------------construc_button_git_hub--------------###
