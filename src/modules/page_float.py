@@ -37,7 +37,11 @@ class   page_float:
         list_data   =   os.listdir(self.data_save)
 
         up  =   ft.Container(
-            content=ft.Container(ft.Text("w", font_family=self.font[2], color=self.color[4], size=self.s*0.7)), 
+            content=ft.Container(
+                ft.Text("w", font_family=self.font[2], color=self.color[4], size=self.s*0.65),
+                on_click=None,
+                tooltip="Calculate"
+            ), 
             bgcolor=self.color[2],
             padding=5,
             width=self.w*0.8,
@@ -48,7 +52,7 @@ class   page_float:
         )
 
         down  =   ft.Container(
-            content=ft.Text(f"{len(list_data)}", font_family=self.font[0], color=self.color[0], size=self.s*0.4), 
+            content=ft.Text(f"{len(list_data)}", font_family=self.font[0], color=self.color[0], size=self.s*0.3), 
             alignment=ft.alignment.center,
         )
 
