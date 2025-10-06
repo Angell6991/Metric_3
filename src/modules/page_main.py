@@ -168,7 +168,7 @@ class   page_main:
                 controls=[box_title, box_buttons_and_calculate],
                 alignment=ft.MainAxisAlignment.START,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=dimentions[1]*0.9*0.05,
+                spacing=dimentions[1]*0.9*0.09,
             ),
             padding=30,
         )
