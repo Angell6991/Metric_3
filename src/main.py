@@ -102,8 +102,7 @@ def main(page: ft.Page):
         lambda  e:  pgs.float_window("metric_tensor"), 
         lambda  e:  pgs.float_window("constants"), 
         contraccion_container_rigth,
-        # pgf.button_calculate()
-        print("hola")
+        pgf.button_calculate()
     ]
 
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  
