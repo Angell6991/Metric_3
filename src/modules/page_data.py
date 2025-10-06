@@ -5,6 +5,23 @@ class   page_data:
     def __init__(self, color, font, dimentions, dir_imagen):
         self.page   =   None
 
+        ###---------------------condicional--------------------###
+        if  dimentions[0]   >   dimentions[1]:
+            # w   =   dimentions[1]*0.9*0.1
+            # h   =   dimentions[1]*0.9*0.1
+            s   =   dimentions[1]*0.9*0.07
+
+        elif    dimentions[0]   <   dimentions[1]:
+            # w   =   dimentions[0]*0.9*0.15
+            # h   =   dimentions[0]*0.9*0.15
+            s   =   dimentions[0]*0.9*0.1
+        
+        elif    dimentions[0]   ==   dimentions[1]:
+            # w   =   dimentions[1]*0.9*0.15
+            # h   =   dimentions[1]*0.9*0.15
+            s   =   dimentions[1]*0.9*0.09
+
+
         ##########################################################
         ###--------------------def_fuctions--------------------###
         ##########################################################
@@ -45,7 +62,7 @@ class   page_data:
             expand=True,
         )
         title   =   ft.Container(
-            ft.Text("data base", font_family=font[0], color=color[7], size=dimentions[0]*0.9*0.03),
+            ft.Text("data base", font_family=font[0], color=color[7], size=s*0.35),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(

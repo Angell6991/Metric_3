@@ -9,6 +9,17 @@ class   page_save:
         self.dimentions =   dimentions
         self.dir_data_intro =   dir_data_intro
 
+        ###---------------------condicional--------------------###
+        if  dimentions[0]   >   dimentions[1]:
+            self.s   =   dimentions[1]*0.9*0.07
+
+        elif    dimentions[0]   <   dimentions[1]:
+            self.s   =   dimentions[0]*0.9*0.1
+        
+        elif    dimentions[0]   ==   dimentions[1]:
+            self.s   =   dimentions[1]*0.9*0.09
+
+
     ##########################################################
     ###--------------------def_fuctions--------------------###
     ##########################################################
@@ -19,19 +30,19 @@ class   page_save:
             titulo  =   "coordinates"
             icon    =   "x"
             dir     =   self.dir_data_intro[0]
-            sizee   =   self.dimentions[0]*0.04
+            sizee   =   self.s*0.45
 
         elif  label   ==  "constants":
             titulo  =   "constant \n parameters"
             icon    =   "c"
             dir     =   self.dir_data_intro[1]
-            sizee   =   self.dimentions[0]*0.03
+            sizee   =   self.s*0.4
 
         elif  label   ==  "metric_tensor":
             titulo  =   "metric tensor"
             icon    =   "g"
             dir     =   self.dir_data_intro[2]
-            sizee   =   self.dimentions[0]*0.04
+            sizee   =   self.s*0.45
 
         ###---------------def_function_of_save_data------------###        
         def guardar_archivo(e):
@@ -72,7 +83,7 @@ class   page_save:
 
             title=ft.Container(
                 ft.Row([
-                    ft.Text(icon, font_family=self.font[2], size=self.dimentions[0]*0.1, color=self.color[0]),
+                    ft.Text(icon, font_family=self.font[2], size=self.s*1.3, color=self.color[0]),
                     ft.Text(titulo, font_family=self.font[0], size=sizee, color=self.color[0])
                 ])
             ),
@@ -80,7 +91,7 @@ class   page_save:
             content=contenedor,
             actions=[
                 ft.FilledButton(
-                    content=ft.Text("s", font_family=self.font[2], size=self.dimentions[0]*0.04, color=self.color[3]),
+                    content=ft.Text("s", font_family=self.font[2], size=self.s*0.5, color=self.color[3]),
                     tooltip="save and exit",
                     bgcolor=self.color[0],
                     on_click=lambda e: self.page.close(dlg_modal),

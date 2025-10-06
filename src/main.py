@@ -137,7 +137,7 @@ def main(page: ft.Page):
     container_right =   ft.Container(
         content=page_main_bring, 
         bgcolor=color[2], 
-        padding=10,
+        padding=0,
         width=dimentions[0]*0.9,
         height=dimentions[1]*0.9,
         border_radius=15,
