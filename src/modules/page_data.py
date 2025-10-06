@@ -36,15 +36,16 @@ class   page_data:
             expand=True
         )
         imagen  =   ft.Container(
-            ft.Image(src=str(dir_imagen), width=dimentions[0]*0.6),
+            ft.Image(src=str(dir_imagen)),
             shadow=ft.BoxShadow(color=color[2], blur_radius=10),
             bgcolor=color[2], 
             border_radius=15,
             width=dimentions[0]*0.82,
-            padding=10,       
+            padding=10,
+            expand=True,
         )
         title   =   ft.Container(
-            ft.Text("data base", font_family=font[0], color=color[7], size=dimentions[0]*0.03),
+            ft.Text("data base", font_family=font[0], color=color[7], size=dimentions[0]*0.9*0.03),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
@@ -57,7 +58,9 @@ class   page_data:
             bgcolor=color[3], 
             border_radius=15, 
             padding=10,
-            border=ft.border.all(4, color[2])
+            border=ft.border.all(4, color[2]),
+            width=dimentions[0]*0.82,
+            height=dimentions[1]*0.45*0.8,
         )
 
         ###-------------------contet_box_down------------------###

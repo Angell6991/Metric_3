@@ -13,7 +13,7 @@ class   page_main:
         def button(icon, label, colorr, action):
             button  =   ft.Container(
                 content=ft.TextButton(
-                    content=ft.Text(str(icon), font_family=font[2], size=dimentions[0]*0.1, color=colorr), 
+                    content=ft.Text(str(icon), font_family=font[2], size=dimentions[1]*0.9*0.07, color=colorr), 
                     on_click=action,
                     tooltip=str(label),
                     style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10), padding=3),
@@ -22,6 +22,9 @@ class   page_main:
                 bgcolor=color[2],
                 padding=2,
                 border_radius=10,
+                width=dimentions[1]*0.9*0.1,
+                height=dimentions[1]*0.9*0.1,
+                alignment=ft.alignment.center
             )
             return  button
 
@@ -29,7 +32,7 @@ class   page_main:
         def button_glass(icon, label, colorr, action): 
             button  =   ft.Container(
                 content=ft.TextButton(
-                    content=ft.Text(str(icon), font_family=font[2], size=dimentions[0]*0.1, color=colorr), 
+                    content=ft.Text(str(icon), font_family=font[2], size=dimentions[1]*0.9*0.07, color=colorr), 
                     on_click=action,
                     tooltip=str(label),
                     style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10), padding=2),
@@ -38,6 +41,9 @@ class   page_main:
                 bgcolor=color[3],
                 padding=2,
                 border_radius=10,
+                width=dimentions[1]*0.9*0.1,
+                height=dimentions[1]*0.9*0.1,
+                alignment=ft.alignment.center
             )
             return  button
 
@@ -48,14 +54,15 @@ class   page_main:
 
         ###------------------construc_box_title----------------###
         imagen  =   ft.Container(
-            ft.Image(src=str(dir_imagen), width=dimentions[0]*0.6),
+            ft.Image(src=str(dir_imagen)),
             shadow=ft.BoxShadow(color=color[2], blur_radius=10),
             bgcolor=color[2], 
             border_radius=15, 
-            padding=10,       
+            padding=10,
+            expand=True,
         )
         title   =   ft.Container(
-            ft.Text("metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.03),
+            ft.Text("metric 3", font_family=font[0], color=color[5], size=dimentions[0]*0.9*0.03),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
@@ -68,6 +75,8 @@ class   page_main:
             bgcolor=color[3], 
             border_radius=15, 
             padding=5,
+            width=dimentions[0]*0.9*0.7,
+            height=dimentions[1]*0.9*0.3,
         )
 
         ###-----------------construc_box_buttons---------------###
@@ -105,12 +114,13 @@ class   page_main:
             bgcolor=color[3],
             padding=2,
             border_radius=50,
-            on_click=None,
+            width=dimentions[0]*0.9*0.13,
+            height=dimentions[0]*0.9*0.18,
         )
 
         ###---------------construc_button_git_hub--------------###
         git_hub =   ft.TextButton(
-            content=ft.Text("h", font_family=font[2], size=dimentions[0]*0.06, color=color[7]), 
+            content=ft.Text("h", font_family=font[2], size=dimentions[0]*0.9*0.06, color=color[7]), 
             url     =   "https://github.com/Angell6991/Metric_3",
             style=ft.ButtonStyle(shape=ft.CircleBorder(), padding=5),
         )
@@ -132,7 +142,7 @@ class   page_main:
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=dimentions[0]*0.05
+                spacing=dimentions[0]*0.9*0.05
             )
         )
 
@@ -140,7 +150,7 @@ class   page_main:
             controls=[box_title, box_buttons_and_calculate],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=dimentions[1]*0.05,
+            spacing=dimentions[1]*0.9*0.05,
         )
 
         ###---------------------return_class-------------------###

@@ -102,7 +102,8 @@ def main(page: ft.Page):
         lambda  e:  pgs.float_window("metric_tensor"), 
         lambda  e:  pgs.float_window("constants"), 
         contraccion_container_rigth,
-        pgf.button_calculate()
+        # pgf.button_calculate()
+        print("hola")
     ]
 
     pgm =   page_main.page_main(color, font, dimentions, dir_imagen_title, actions_buttons_main)  
@@ -118,7 +119,7 @@ def main(page: ft.Page):
     ###-----------------construc_page--------------------###
     ########################################################
     boton_back_expan  =   ft.Container(
-        content=ft.Text("u", font_family=font[2], size=dimentions[0]*0.07, color=color[3]), 
+        content=ft.Text("u", font_family=font[2], size=dimentions[0]*0.9*0.06, color=color[3]), 
         on_click=expan_container_rigth,
         padding=10,
         alignment=ft.alignment.center_left,
@@ -136,7 +137,7 @@ def main(page: ft.Page):
     container_right =   ft.Container(
         content=page_main_bring, 
         bgcolor=color[2], 
-        padding=0,
+        padding=10,
         width=dimentions[0]*0.9,
         height=dimentions[1]*0.9,
         border_radius=15,

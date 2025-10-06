@@ -80,10 +80,10 @@ class   page_save:
             content=contenedor,
             actions=[
                 ft.FilledButton(
-                    content=ft.Text("s", font_family=self.font[2], size=self.dimentions[0]*0.05, color=self.color[3]),
+                    content=ft.Text("s", font_family=self.font[2], size=self.dimentions[0]*0.04, color=self.color[3]),
                     tooltip="save and exit",
                     bgcolor=self.color[0],
-                    on_click=lambda e: self.page.close(dlg_modal)
+                    on_click=lambda e: self.page.close(dlg_modal),
                 ),
             ],
             actions_alignment=ft.MainAxisAlignment.CENTER,
