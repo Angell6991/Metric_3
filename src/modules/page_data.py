@@ -62,7 +62,7 @@ class   page_data:
             expand=True,
         )
         title   =   ft.Container(
-            ft.Text("data base", font_family=font[0], color=color[7], size=s*0.35),
+            ft.Text("database", font_family=font[0], color=color[7], size=s*0.35),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(

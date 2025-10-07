@@ -11,6 +11,7 @@ class   page_float:
         self.data_save  =   data_save
         self.dimentions =   dimentions
         self.dir_data_intro =   dir_data_intro
+        self.name_metric    =   "vacio"
 
         ###---------------------condicional--------------------###
         if  dimentions[0]   >   dimentions[1]:
@@ -39,10 +40,53 @@ class   page_float:
             up.content  =   cont_load
             self.page.update()
 
-            for i   in  range(101):
-                cont_load.value =   i/100
-                self.page.update()
+            create  =   os.path.join(self.data_save, self.name_metric)
+            os.makedirs(create, exist_ok=True)
 
+            metric_data_save   =   [
+                f"{create}/coordinates.dat",
+                f"{create}/constants.dat",
+                f"{create}/metric_tensor.dat",
+                f"{create}/inverse_metric_tensor.dat",
+                f"{create}/symbol_christofell.dat",
+                f"{create}/riemann_tensor.dat",
+                f"{create}/ricci_tensor.dat",
+                f"{create}/escalar_curvatura.dat",
+            ]
+            gg  =   cal.relativity(self.dir_data_intro, metric_data_save)
+            
+            gg.save_coordinates()
+            cont_load.value =   (1/8)*1
+            self.page.update()
+
+            gg.save_constants()
+            cont_load.value =   (1/8)*2
+            self.page.update()            
+
+            gg.metric_tensor()
+            cont_load.value =   (1/8)*3
+            self.page.update()
+            
+            gg.inverse_metric()
+            cont_load.value =   (1/8)*4
+            self.page.update() 
+            
+            gg.christofell()
+            cont_load.value =   (1/8)*5
+            self.page.update()
+            
+            gg.riemann_tensor()
+            cont_load.value =   (1/8)*6
+            self.page.update()
+            
+            gg.ricci_tensor()
+            cont_load.value =   (1/8)*7
+            self.page.update()
+            
+            gg.e_curvatura()
+            cont_load.value =   (1/8)*8
+            self.page.update()
+            
             up.content  =   cont_icon
             cont    =   ft.Container(
                 ft.Row(
@@ -58,6 +102,8 @@ class   page_float:
                 )
             )
             self.page.open(ft.SnackBar(content=cont, bgcolor=self.color[0], duration=4000))
+            
+            self.name_metric    =   str("vacio")
             return  self.page.update()
         
         ###----------------------------------------------------###
@@ -68,6 +114,7 @@ class   page_float:
                     return  print("vacio")
                 elif    dlg_modal.content.value !=  "":
                     self.page.close(dlg_modal)
+                    self.name_metric    =   str(dlg_modal.content.value)
                     return calculate(e)
 
             dlg_modal = ft.AlertDialog(

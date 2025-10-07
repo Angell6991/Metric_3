@@ -79,7 +79,7 @@ class   page_main:
             expand=True,
         )
         title   =   ft.Container(
-            ft.Text("metric 3", font_family=font[0], color=color[5], size=s*0.35),
+            ft.Text("metric  3", font_family=font[0], color=color[5], size=s*0.35),
             padding=ft.padding.only(left=10, right=10, top=0, bottom=0),       
         )
         box_title   =   ft.Container(
@@ -108,7 +108,7 @@ class   page_main:
         down  =   ft.Row(
             controls=[
                 button("c", "Constants", color[1], data_button_action[2]), 
-                button_glass("d", "Data base", color[2], data_button_action[3])
+                button_glass("d", "Database", color[2], data_button_action[3])
             ], 
             alignment=ft.MainAxisAlignment.CENTER,
             tight=True
