@@ -44,12 +44,73 @@ class   page_float:
                 self.page.update()
 
             up.content  =   cont_icon
+            cont    =   ft.Container(
+                ft.Row(
+                    [
+                        ft.Text(
+                            "Completed calculation see the database", 
+                            font_family=self.font[1], color=self.color[2], 
+                            size=self.s*0.4
+                        ),
+                        ft.Text("d", font_family=self.font[2], color=self.color[2], size=self.s*0.5)
+                    ],
+                    spacing=self.w*0.2,
+                )
+            )
+            self.page.open(ft.SnackBar(content=cont, bgcolor=self.color[0], duration=4000))
             return  self.page.update()
+        
+        ###----------------------------------------------------###
+        def insert_name(e):
+
+            dlg_modal = ft.AlertDialog(
+                modal=True,
+                elevation=20,
+                bgcolor=self.color[3], 
+
+                title=ft.Text(
+                    "insert  the  name \n of  the  metric", 
+                    font_family=self.font[0], 
+                    size=self.s*0.35, 
+                    color=self.color[0]
+                ),
+
+                content=ft.TextField(
+                    label   =   "Name", 
+                    color   =   self.color[2], 
+                    bgcolor =   self.color[0], 
+                    label_style =   ft.TextStyle(color=self.color[2]),
+                    border_color    =   self.color[2], 
+                    border_radius   =   10,
+                    border_width    =   1,
+                    cursor_color    =   self.color[2],
+                    cursor_height   =   20,
+                    cursor_radius   =   10,
+                    cursor_width    =   1,
+                    selection_color =   self.color[1],
+                    text_style=ft.TextStyle(font_family=self.font[1]),
+                ),
+
+                actions=[
+                    ft.FilledButton(
+                        content=ft.Text("Back", font_family=self.font[1], size=self.s*0.5, color=self.color[0]),
+                        bgcolor=self.color[3],
+                        on_click=lambda e: self.page.close(dlg_modal),
+                    ),
+                    ft.FilledButton(
+                        content=ft.Text("Start", font_family=self.font[1], size=self.s*0.5, color=self.color[3]),
+                        bgcolor=self.color[0],
+                        on_click=calculate,
+                    ),
+                ],
+                actions_alignment=ft.MainAxisAlignment.END,
+            )
+            return  self.page.open(dlg_modal)
 
         ###----------------------------------------------------###
         cont_icon   =   ft.Container(
             ft.Text("w", font_family=self.font[2], color=self.color[4], size=self.s*0.65),
-            on_click=calculate,
+            on_click=insert_name,
             tooltip="Calculate"
         )
         cont_load   =   ft.ProgressRing(
