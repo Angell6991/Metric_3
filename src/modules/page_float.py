@@ -35,7 +35,11 @@ class   page_float:
     ##########################################################
     def button_calculate(self):
         
-        ###----------------------------------------------------###
+        ##########################################################
+        ###--------------------def_fuctions--------------------###
+        ##########################################################
+
+        ###------------------init_calulated--------------------###
         def calculate(e):
             up.content  =   cont_load
             self.page.update()
@@ -104,9 +108,15 @@ class   page_float:
             self.page.open(ft.SnackBar(content=cont, bgcolor=self.color[0], duration=4000))
             
             self.name_metric    =   str("vacio")
+            down.content    =   ft.Text(
+                f"{len(os.listdir(self.data_save))}", 
+                font_family=self.font[0], 
+                color=self.color[0], 
+                size=self.s*0.3
+            )
             return  self.page.update()
         
-        ###----------------------------------------------------###
+        ###----------------insert_name_metric------------------###
         def insert_name(e):
 
             def save_and_exit(e):
@@ -161,7 +171,11 @@ class   page_float:
             )
             return  self.page.open(dlg_modal)
 
-        ###----------------------------------------------------###
+        ##########################################################
+        ###---------construc_content_spacing_calculate---------###
+        ##########################################################
+
+        ###---------------------box_top------------------------###
         cont_icon   =   ft.Container(
             ft.Text("w", font_family=self.font[2], color=self.color[4], size=self.s*0.65),
             on_click=insert_name,
@@ -173,7 +187,6 @@ class   page_float:
             stroke_width=self.s*0.08,
             color=self.color[4],
         )
-
         up  =   ft.Container(
             content=cont_icon, 
             bgcolor=self.color[2],
@@ -185,15 +198,14 @@ class   page_float:
             alignment=ft.alignment.center,
         )
 
-        ###----------------------------------------------------###
+        ###-------------------box_boton------------------------###
         list_data   =   os.listdir(self.data_save)
-
         down  =   ft.Container(
             content=ft.Text(f"{len(list_data)}", font_family=self.font[0], color=self.color[0], size=self.s*0.3), 
             alignment=ft.alignment.center,
         )
 
-        ###----------------------------------------------------###
+        ###---------------------return-------------------------###
         contenedor  =   ft.Container(content=ft.Column([up, down], spacing=5), padding=5)
 
         return  contenedor
