@@ -63,6 +63,13 @@ class   page_float:
         ###----------------------------------------------------###
         def insert_name(e):
 
+            def save_and_exit(e):
+                if  dlg_modal.content.value ==  "":
+                    return  print("vacio")
+                elif    dlg_modal.content.value !=  "":
+                    self.page.close(dlg_modal)
+                    return calculate(e)
+
             dlg_modal = ft.AlertDialog(
                 modal=True,
                 elevation=20,
@@ -100,7 +107,7 @@ class   page_float:
                     ft.FilledButton(
                         content=ft.Text("Start", font_family=self.font[1], size=self.s*0.5, color=self.color[3]),
                         bgcolor=self.color[0],
-                        on_click=calculate,
+                        on_click=save_and_exit,
                     ),
                 ],
                 actions_alignment=ft.MainAxisAlignment.END,
