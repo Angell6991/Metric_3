@@ -77,6 +77,7 @@ class   page_main:
             border_radius=15, 
             padding=10,
             expand=True,
+            width=h*5.5,
         )
         title   =   ft.Container(
             ft.Text("metric  3", font_family=font[0], color=color[5], size=s*0.35),
@@ -159,7 +160,7 @@ class   page_main:
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=dimentions[0]*0.9*0.05
+                spacing=(dimentions[1]*0.9 - h*2 - s*0.6 - w*1.5 - 30)/10
             )
         )
 
@@ -168,9 +169,12 @@ class   page_main:
                 controls=[box_title, box_buttons_and_calculate],
                 alignment=ft.MainAxisAlignment.START,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=dimentions[1]*0.9*0.09,
+                spacing=(dimentions[1]*0.9 - h*2 - s*0.6 - w*1.5 - 30)/10,
+                scroll=ft.ScrollMode.HIDDEN
+
             ),
-            padding=30,
+            padding=ft.padding.only(left=0, right=0, top=30, bottom=0),       
+            height=dimentions[1],
         )
 
         ###---------------------return_class-------------------###
