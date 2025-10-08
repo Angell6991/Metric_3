@@ -24,8 +24,8 @@ class   page_data:
         ###--------------------def_fuctions--------------------###
         ##########################################################
         def contraccion_container_up(e):
-            box_up.height   =   dimentions[1]*0.45
-            box_down.height =   dimentions[1]*0.43
+            box_up.height   =   dimentions[1]*0.4
+            box_down.height =   dimentions[1]*0.48
             box_up.content  =   ft.Column([box_title, boton_back_expan])
             return  self.page.update()
 
@@ -45,28 +45,27 @@ class   page_data:
                     ],
                     spacing=w*0.05
                 ),
-                bgcolor=color[2],
+                bgcolor=color[8],
                 border_radius=15,
-                shadow=ft.BoxShadow(color=color[3], blur_radius=1),
                 padding=ft.padding.only(left=20, right=20, top=0, bottom=0),       
                 alignment=ft.alignment.center_left,
                 on_click=contraccion_container_up,
+                height=dimentions[1]*0.1
             )
             return  cont_button
 
-        lista   =   os.listdir(dir_data_save)
-        
+        lista   =   sorted(os.listdir(dir_data_save))
         lista   =   [cont_button(i) for i   in  lista]
         data_list   =   ft.Container(
             content=ft.Container(
-                content=ft.Column(lista, scroll=ft.ScrollMode.HIDDEN),
+                content=ft.Column(lista, scroll=ft.ScrollMode.HIDDEN, spacing=3),
                 border_radius=15,
             ),
             alignment=ft.alignment.top_center,
             border_radius=15,
             padding=ft.padding.only(left=8, right=8, top=3, bottom=3),
             width=w,
-            height=dimentions[1]*0.5,
+            height=dimentions[1]*0.9*0.6,
         )
 
 
@@ -113,7 +112,7 @@ class   page_data:
             padding=10,
             border=ft.border.all(4, color[2]),
             width=dimentions[0]*0.82,
-            height=dimentions[1]*0.45*0.8,
+            height=dimentions[1]*0.9*0.35,
         )
 
         ###-------------------contet_box_down------------------###
