@@ -109,7 +109,7 @@ def main(page: ft.Page):
     page_main_bring =   pgm.page_main
     pgm.page    =   page
 
-    pgd =   page_data.page_data(color, font, dimentions, dir_imagen_data)
+    pgd =   page_data.page_data(color, font, dimentions, dir_imagen_data, data_save)
     page_data_bring =   pgd.page_data
     pgd.page    =  page 
 
