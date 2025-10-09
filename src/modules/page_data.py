@@ -50,7 +50,7 @@ class   page_data:
                 padding=ft.padding.only(left=20, right=20, top=0, bottom=0),       
                 alignment=ft.alignment.center_left,
                 on_click=contraccion_container_up,
-                height=dimentions[1]*0.1
+                height=dimentions[1]*0.9*0.1
             )
             return  cont_button
 
@@ -63,7 +63,7 @@ class   page_data:
             ),
             alignment=ft.alignment.top_center,
             border_radius=15,
-            padding=ft.padding.only(left=8, right=8, top=3, bottom=3),
+            padding=ft.padding.only(left=10, right=10, top=3, bottom=3),
             width=w,
             height=dimentions[1]*0.9*0.6,
         )
