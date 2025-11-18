@@ -71,11 +71,13 @@ def main(page: ft.Page):
     ###----------------def_functions---------------------###
     ########################################################
     def contraccion_container_rigth(e):
-        container_right.width   =   dimentions[0]*0.5
+        container_right.width   =   dimentions[0]*0.15
         container_right.height  =   dimentions[1]*0.9
         container_right.border_radius   =   ft.border_radius.only(top_left=15, top_right=0, bottom_left=15, bottom_right=0)
+        container_main.content.spacing  =   dimentions[0]*0.05
+        container_main.padding  =   0
 
-        container_left.width    =   dimentions[0]*0.87
+        container_left.width    =   dimentions[0]*0.85
         container_right.content =   ft.Column([boton_back_expan])
         return  page.update()
 
@@ -83,6 +85,7 @@ def main(page: ft.Page):
         container_right.width   =   dimentions[0]*0.9
         container_right.height  =   dimentions[1]*0.9
         container_right.border_radius   =   15
+        container_main.content.spacing  =   dimentions[0]*0
         
         container_left.width    =   dimentions[0]*0
         container_right.content =   page_main_bring
@@ -129,7 +132,7 @@ def main(page: ft.Page):
     container_left  =   ft.Container(
         content=ft.Row([page_data_bring]), 
         bgcolor=color[3], 
-        padding=10,
+        padding=0,
         width=dimentions[0]*0,
         height=dimentions[1],
         animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
@@ -145,9 +148,9 @@ def main(page: ft.Page):
     )
     container_main  =   ft.Container(
         content=ft.Row(
-            [container_left, container_right], 
+            [container_left, container_right],
             alignment=ft.MainAxisAlignment.CENTER, 
-            spacing=0,
+            spacing=dimentions[0]*0,
         ), 
         padding=0
     )

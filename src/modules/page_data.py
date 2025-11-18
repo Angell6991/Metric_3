@@ -8,15 +8,15 @@ class   page_data:
 
         ###---------------------condicional--------------------###
         if  dimentions[0]   >   dimentions[1]:
-            w   =   dimentions[0]*0.82
+            w   =   dimentions[0]*0.85
             s   =   dimentions[1]*0.9*0.07
 
         elif    dimentions[0]   <   dimentions[1]:
-            w   =   dimentions[0]*0.82
+            w   =   dimentions[0]*0.85
             s   =   dimentions[0]*0.9*0.1
         
         elif    dimentions[0]   ==   dimentions[1]:
-            w   =   dimentions[0]*0.82
+            w   =   dimentions[0]*0.85
             s   =   dimentions[1]*0.9*0.09
 
 
@@ -122,7 +122,7 @@ class   page_data:
             content=ft.Column([box_title, data_list]), 
             bgcolor=color[2], 
             padding=0,
-            width=dimentions[0]*0.82,
+            width=dimentions[0]*0.8,
             height=dimentions[1]*0.9,
             border_radius=15,
             animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
@@ -131,7 +131,7 @@ class   page_data:
             content=ft.Column([]), 
             bgcolor=color[2], 
             padding=0,
-            width=dimentions[0]*0.82,
+            width=dimentions[0]*0.8,
             height=dimentions[1]*0,
             border_radius=15,
             animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
@@ -141,7 +141,7 @@ class   page_data:
         ###------------------construc_page_data----------------###
         ##########################################################
         page_data =   ft.Container(
-            content=ft.Column([box_up, box_down], spacing=dimentions[1]*0.02), 
+            content=ft.Column([box_up, box_down], spacing=dimentions[1]*0.02, horizontal_alignment=ft.CrossAxisAlignment.END),
             padding=0,
             width=w,
             height=dimentions[1]*0.9,
