@@ -26,13 +26,13 @@ class   page_data:
         def contraccion_container_up(e):
             box_up.height   =   dimentions[1]*0.4
             box_down.height =   dimentions[1]*0.48
-            box_up.content  =   ft.Column([box_title, boton_back_expan])
+            box_up.content  =   ft.Column([box_title, boton_back_expan("hola")])
             return  self.page.update()
 
         def expan_container_up(e):
             box_up.height   =   dimentions[1]*0.9
             box_down.height =   dimentions[1]*0 
-            box_up.content  =   ft.Column([box_title, boton_expan])
+            box_up.content  =   ft.Column([box_title, data_list])
             return  self.page.update()
 
         ###-------------------buttons_actions------------------###
@@ -71,21 +71,16 @@ class   page_data:
 
 
         ###--------------------contet_box_up-------------------###
-        boton_back_expan  =   ft.Container(
-            content=ft.Text("v", font_family=font[2], size=dimentions[0]*0.07, color=color[3]), 
-            on_click=expan_container_up,
-            padding=10,
-            alignment=ft.alignment.center_left,
-            expand=True
-        )
-        boton_expan  =   ft.Container(
-            content=ft.Text("v", font_family=font[2], size=dimentions[0]*0.07, color=color[3]), 
-            on_click=contraccion_container_up,
-            padding=10,
-            alignment=ft.alignment.center_left,
-            expand=True
-        )
-
+        
+        def boton_back_expan(label):
+            boton  =   ft.Container(
+                content=ft.Text("v", font_family=font[2], color=color[7], size=s*0.5),
+                on_click=expan_container_up,
+                padding=10,
+                alignment=ft.alignment.center,
+                expand=True
+            )
+            return boton
 
         imagen  =   ft.Container(
             ft.Image(src=str(dir_imagen)),

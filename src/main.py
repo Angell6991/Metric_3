@@ -66,6 +66,16 @@ def main(page: ft.Page):
     h   =   page.height     #   altura
     dimentions  =   [float(w), float(h)]
 
+    ###---------------------condicional--------------------###
+    if  dimentions[0]   >   dimentions[1]:
+        s   =   dimentions[1]*0.9*0.07
+
+    elif    dimentions[0]   <   dimentions[1]:
+        s   =   dimentions[0]*0.9*0.1
+    
+    elif    dimentions[0]   ==   dimentions[1]:
+        s   =   dimentions[1]*0.9*0.09
+
 
     ########################################################
     ###----------------def_functions---------------------###
@@ -122,7 +132,7 @@ def main(page: ft.Page):
     ###-----------------construc_page--------------------###
     ########################################################
     boton_back_expan  =   ft.Container(
-        content=ft.Text("u", font_family=font[2], size=dimentions[0]*0.9*0.06, color=color[3]), 
+        content=ft.Text("u", font_family=font[2], size=s*0.5, color=color[7]), 
         on_click=expan_container_rigth,
         padding=10,
         alignment=ft.alignment.center_left,
