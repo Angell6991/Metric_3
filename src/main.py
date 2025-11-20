@@ -81,15 +81,36 @@ def main(page: ft.Page):
     ###----------------def_functions---------------------###
     ########################################################
     def contraccion_container_rigth(e):
-        container_right.width   =   dimentions[0]*0.15
-        container_right.height  =   dimentions[1]*0.9
-        container_right.border_radius   =   ft.border_radius.only(top_left=15, top_right=0, bottom_left=15, bottom_right=0)
-        container_main.content.spacing  =   dimentions[0]*0.05
-        container_main.padding  =   0
+        
+        lista_data   =   len(sorted(os.listdir(data_save)))
 
-        container_left.width    =   dimentions[0]*0.85
-        container_right.content =   ft.Column([boton_back_expan])
-        return  page.update()
+        if  lista_data  !=  0:
+            container_right.width   =   dimentions[0]*0.15
+            container_right.height  =   dimentions[1]*0.9
+            container_right.border_radius   =   ft.border_radius.only(top_left=15, top_right=0, bottom_left=15, bottom_right=0)
+            container_main.content.spacing  =   dimentions[0]*0.05
+            container_main.padding  =   0
+
+            container_left.width    =   dimentions[0]*0.85
+            container_right.content =   ft.Column([boton_back_expan])
+            return  page.update()
+
+        elif    lista_data  ==  0:
+            cont    =   ft.Container(
+                ft.Row(
+                    [
+                        ft.Text(
+                            "Perform a calculation", 
+                            font_family=font[1], color=color[2], 
+                            size=s*0.4
+                        ),
+                        ft.Text("w", font_family=font[2], color=color[2], size=s*0.7)
+                    ],
+                    spacing=w*0.02,
+                )
+            )
+            return  page.open(ft.SnackBar(content=cont, bgcolor=color[0], duration=4000))
+
 
     def expan_container_rigth(e):
         container_right.width   =   dimentions[0]*0.9
