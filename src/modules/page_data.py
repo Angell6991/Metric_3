@@ -141,7 +141,11 @@ class   page_data:
         ###------------------construc_page_data----------------###
         ##########################################################
         page_data =   ft.Container(
-            content=ft.Column([box_up, box_down], spacing=dimentions[1]*0.02, horizontal_alignment=ft.CrossAxisAlignment.END),
+            content=ft.Column(
+                [box_up, box_down], 
+                spacing=dimentions[1]*0.02, 
+                horizontal_alignment=ft.CrossAxisAlignment.END
+            ),
             padding=0,
             width=w,
             height=dimentions[1]*0.9,
