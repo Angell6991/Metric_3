@@ -50,9 +50,79 @@ class   page_data:
                 padding=ft.padding.only(left=20, right=20, top=0, bottom=0),       
                 alignment=ft.alignment.center_left,
                 on_click=contraccion_container_up,
+                on_long_press=lambda    e: menu_conf(label),
                 height=dimentions[1]*0.9*0.1
             )
             return  cont_button
+
+        def menu_conf(label):
+            bs = ft.BottomSheet(
+                ft.Container(
+                    ft.Column(
+                        [
+                            ft.Container(
+                                content=ft.Text(str(label), color=color[1], font_family=font[1], size=s*0.5),
+                                bgcolor=color[2],
+                                border_radius=15,
+                                width=dimentions[0],
+                                padding=10,
+                                border=ft.border.all(2, color[1]),
+                                alignment=ft.alignment.center,
+                                shadow=[
+                                    ft.BoxShadow(
+                                        color=color[2],
+                                        blur_radius=10,
+                                        spread_radius=2,
+                                    )
+                                ],
+                            ),
+                            ft.Container(
+                                content=ft.Row(
+                                    [
+                                        ft.Icon(ft.Icons.REMOVE_RED_EYE_SHARP, size=s*0.5, color=color[2]),
+                                        ft.Text("Open", color=color[2], font_family=font[1], size=s*0.4)
+                                    ],
+                                    spacing=20,
+                                ),
+                                width=dimentions[0]*0.6,
+                                padding=10,
+                                on_click=lambda e: self.page.close(bs)
+                            ),
+                            ft.Container(
+                                content=ft.Row(
+                                    [
+                                        ft.Icon(ft.Icons.EDIT, size=s*0.5, color=color[2]),
+                                        ft.Text("Rename", color=color[2], font_family=font[1], size=s*0.4)
+                                    ],
+                                    spacing=20,
+                                ),
+                                width=dimentions[0]*0.6,
+                                padding=10,
+                                on_click=lambda e: self.page.close(bs)
+                            ),
+                            ft.Container(
+                                content=ft.Row(
+                                    [
+                                        ft.Icon(ft.Icons.DELETE, size=s*0.5, color=color[2]),
+                                        ft.Text("Delete", color=color[2], font_family=font[1], size=s*0.4)
+                                    ],
+                                    spacing=20,
+                                ),
+                                width=dimentions[0]*0.6,
+                                padding=10,
+                                on_click=lambda e: self.page.close(bs)
+                            ),
+                        ],
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        tight=True,
+                    ),
+                    padding=20,
+                ),
+                bgcolor=color[1],
+                open=False,
+            )
+            return  self.page.open(bs)
+
 
         lista   =   sorted(os.listdir(dir_data_save))
         lista   =   [cont_button(i) for i   in  lista]
@@ -67,7 +137,6 @@ class   page_data:
             width=w,
             height=dimentions[1]*0.9*0.6,
         )
-
 
 
         ###--------------------contet_box_up-------------------###
