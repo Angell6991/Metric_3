@@ -145,17 +145,43 @@ class   page_data:
 
         lista   =   sorted(os.listdir(self.dir_data_save))
         lista   =   [cont_button(i) for i   in  lista]
-        data_list   =   ft.Container(
-            content=ft.Container(
-                content=ft.Column(lista, scroll=ft.ScrollMode.HIDDEN, spacing=3),
+        
+        if  len(lista)  !=  0:
+            data_list   =   ft.Container(
+                content=ft.Container(
+                    content=ft.Column(lista, scroll=ft.ScrollMode.HIDDEN, spacing=3),
+                    border_radius=15,
+                ),
+                alignment=ft.alignment.top_center,
                 border_radius=15,
-            ),
-            alignment=ft.alignment.top_center,
-            border_radius=15,
-            padding=ft.padding.only(left=10, right=10, top=3, bottom=3),
-            width=self.w,
-            height=self.dimentions[1]*0.9*0.6,
-        )
+                padding=ft.padding.only(left=10, right=10, top=3, bottom=3),
+                width=self.w,
+                height=self.dimentions[1]*0.9*0.6,
+            )
+
+        elif    len(lista)  ==  0:
+            data_list   =   ft.Container(
+                content=ft.Container(
+                    content=ft.Row(
+                        [
+                            ft.Text(
+                                "Perform a calculation", 
+                                font_family=self.font[1], color=self.color[0], 
+                                size=self.s*0.5
+                            ),
+                            ft.Text("w", font_family=self.font[2], color=self.color[7], size=self.s*0.9)
+                        ],
+                        spacing=self.w*0.02,
+                        alignment=ft.MainAxisAlignment.CENTER,
+                    ),
+                    border_radius=15,
+                ),
+                alignment=ft.alignment.top_center,
+                border_radius=15,
+                padding=ft.padding.only(left=10, right=10, top=3, bottom=3),
+                width=self.w,
+                height=self.dimentions[1]*0.9*0.6,
+            )
 
         return data_list
 
