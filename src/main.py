@@ -93,6 +93,7 @@ def main(page: ft.Page):
 
             container_left.width    =   dimentions[0]*0.85
             container_right.content =   ft.Column([boton_back_expan])
+            pgd.refresh_list()
             return  page.update()
 
         elif    lista_data  ==  0:
@@ -145,7 +146,7 @@ def main(page: ft.Page):
     pgm.page    =   page
 
     pgd =   page_data.page_data(color, font, dimentions, dir_imagen_data, data_save)
-    page_data_bring =   pgd.page_data
+    page_data_bring =   pgd.page_data()
     pgd.page    =  page 
 
 
