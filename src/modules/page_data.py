@@ -54,8 +54,80 @@ class   page_data:
                 height=dimentions[1]*0.9*0.1
             )
             return  cont_button
-
+        
         def menu_conf(label):
+
+            def open(e):
+                contraccion_container_up(e)
+                self.page.close(bs)
+                return  self.page.update()
+
+            def insert_name(label):
+
+                def save_and_exit(e):
+
+                    def rename_directory(new_name):
+                        os.rename(f"{dir_data_save}/{label}" , f"{dir_data_save}/{new_name}")
+                        # implementation reload page
+                        # box_up.content  =   ft.Column([box_title, data_list])
+                        return  self.page.update()
+
+                    if  dlg_modal.content.value ==  "":
+                        return  print("vacio")
+                    elif    dlg_modal.content.value !=  "":
+                        self.page.close(dlg_modal)
+                        return rename_directory(dlg_modal.content.value)
+
+                dlg_modal = ft.AlertDialog(
+                    modal=True,
+                    elevation=20,
+                    bgcolor=color[3], 
+
+                    title=ft.Text(
+                        "rename", 
+                        font_family=font[0], 
+                        size=s*0.35, 
+                        color=color[0]
+                    ),
+
+                    content=ft.TextField(
+                        label   =   f"{label}", 
+                        color   =   color[2], 
+                        bgcolor =   color[0], 
+                        label_style =   ft.TextStyle(color=color[2]),
+                        border_color    =   color[2], 
+                        border_radius   =   10,
+                        border_width    =   1,
+                        cursor_color    =   color[2],
+                        cursor_height   =   20,
+                        cursor_radius   =   10,
+                        cursor_width    =   1,
+                        selection_color =   color[1],
+                        text_style=ft.TextStyle(font_family=font[1]),
+                    ),
+
+                    actions=[
+                        ft.FilledButton(
+                            content=ft.Text("Back", font_family=font[1], size=s*0.5, color=color[0]),
+                            bgcolor=color[3],
+                            on_click=lambda e: self.page.close(dlg_modal),
+                        ),
+                        ft.FilledButton(
+                            content=ft.Text("Save", font_family=font[1], size=s*0.5, color=color[3]),
+                            bgcolor=color[0],
+                            on_click=save_and_exit,
+                        ),
+                    ],
+                    actions_alignment=ft.MainAxisAlignment.END,
+                )
+                return  self.page.open(dlg_modal)
+            
+            def rename(label):
+                self.page.close(bs)
+                insert_name(label)
+                return self.page.update()
+
+
             bs = ft.BottomSheet(
                 ft.Container(
                     ft.Column(
@@ -86,7 +158,7 @@ class   page_data:
                                 ),
                                 width=dimentions[0]*0.6,
                                 padding=10,
-                                on_click=lambda e: self.page.close(bs)
+                                on_click=open
                             ),
                             ft.Container(
                                 content=ft.Row(
@@ -98,7 +170,7 @@ class   page_data:
                                 ),
                                 width=dimentions[0]*0.6,
                                 padding=10,
-                                on_click=lambda e: self.page.close(bs)
+                                on_click=lambda e:rename(label)
                             ),
                             ft.Container(
                                 content=ft.Row(
