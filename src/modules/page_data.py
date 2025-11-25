@@ -1,6 +1,8 @@
 import  flet    as  ft
 import  os
 
+from .page_data_menu_setting import menu_conf
+
 class   page_data:
 
     def __init__(self, color, font, dimentions, dir_imagen, dir_data_save):
@@ -115,6 +117,7 @@ class   page_data:
         )
         return boton
 
+
     ##########################################################
     ###------------------data _list------------------------###   
     ##########################################################
@@ -134,7 +137,7 @@ class   page_data:
                 padding=ft.padding.only(left=20, right=20, top=0, bottom=0),       
                 alignment=ft.alignment.center_left,
                 on_click=lambda e: self.contraccion_container_up(),
-                # on_long_press=lambda    e: menu_conf(label),
+                on_long_press=lambda    e: self.menu_conf(label),
                 height=self.dimentions[1]*0.9*0.1
             )
             return  cont_button
@@ -162,6 +165,24 @@ class   page_data:
 
 
     ##########################################################
+    ###-------------def_menu_open_rename_delete------------###
+    ##########################################################
+    def menu_conf(self, label):
+        menu    =   menu_conf(
+            page=self.page,
+            color=self.color,
+            font=self.font,
+            s=self.s,
+            dir_data_save=self.dir_data_save,
+            dimentions=self.dimentions,
+            label=label,
+            refresh_list_callback=self.refresh_list,
+            contraccion_container_callback=self.contraccion_container_up,
+        )
+        return  menu
+
+
+    ##########################################################
     ###------------------construc_page_data----------------###
     ##########################################################
     def page_data(self):
@@ -177,9 +198,5 @@ class   page_data:
             animate=ft.Animation(400, ft.AnimationCurve.DECELERATE),
         )
         return page_data
-
-
-
-
 
 
