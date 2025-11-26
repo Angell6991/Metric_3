@@ -127,7 +127,7 @@ class   page_main:
         )
 
         ###---------------construc_button_calculate------------###
-        calculate   =   ft.Container(
+        self.calculate   =   ft.Container(
             content=data_button_action[4],
             bgcolor=color[3],
             padding=2,
@@ -152,7 +152,7 @@ class   page_main:
                 controls=[
                     box_buttons, 
                     ft.Container(
-                        content=ft.Column([calculate,git_hub], 
+                        content=ft.Column([self.calculate,git_hub], 
                             alignment=ft.MainAxisAlignment.CENTER,
                             horizontal_alignment=ft.CrossAxisAlignment.CENTER 
                         )
@@ -179,5 +179,14 @@ class   page_main:
 
         ###---------------------return_class-------------------###
         self.page_main  =   page_main
+
+
+
+    ##########################################################
+    ###-------------refresh_button_calculate---------------###
+    ##########################################################
+    def refresh_calculate(self, new_content):
+        self.calculate.content   =  new_content
+        return  self.page.update()
 
 

@@ -121,6 +121,7 @@ def main(page: ft.Page):
         
         container_left.width    =   dimentions[0]*0
         container_right.content =   page_main_bring
+        pgm.refresh_calculate(pgf.button_calculate())
         return  page.update()
 
 
