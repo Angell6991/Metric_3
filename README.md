@@ -20,7 +20,7 @@ This repository is under construction
 For now the app is only developed with Python:
 
 ```sh
-pip install pandas sympy flet
+pip install pandas sympy flet matplotlib
 ```
 
 ## Installation
