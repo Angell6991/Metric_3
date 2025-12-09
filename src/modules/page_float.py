@@ -2,6 +2,8 @@ import  modules.calculate   as  cal
 import  flet    as  ft
 import  os
 
+from    .page_float_cache_equations import  cache_equations
+
 class   page_float:
 
     def __init__(self, color, font, dimentions, dir_data_intro, data_save):
@@ -60,37 +62,41 @@ class   page_float:
             gg  =   cal.relativity(self.dir_data_intro, metric_data_save)
             
             gg.save_coordinates()
-            cont_load.value =   (1/8)*1
+            cont_load.value =   (1/9)*1
             self.page.update()
 
             gg.save_constants()
-            cont_load.value =   (1/8)*2
+            cont_load.value =   (1/9)*2
             self.page.update()            
 
             gg.metric_tensor()
-            cont_load.value =   (1/8)*3
+            cont_load.value =   (1/9)*3
             self.page.update()
             
             gg.inverse_metric()
-            cont_load.value =   (1/8)*4
+            cont_load.value =   (1/9)*4
             self.page.update() 
             
             gg.christofell()
-            cont_load.value =   (1/8)*5
+            cont_load.value =   (1/9)*5
             self.page.update()
             
             gg.riemann_tensor()
-            cont_load.value =   (1/8)*6
+            cont_load.value =   (1/9)*6
             self.page.update()
             
             gg.ricci_tensor()
-            cont_load.value =   (1/8)*7
+            cont_load.value =   (1/9)*7
             self.page.update()
             
             gg.e_curvatura()
-            cont_load.value =   (1/8)*8
+            cont_load.value =   (1/9)*8
             self.page.update()
-            
+
+            cache_equations(create, self.color[0])
+            cont_load.value =   (1/9)*9
+            self.page.update()
+
             up.content  =   cont_icon
             cont    =   ft.Container(
                 ft.Row(
