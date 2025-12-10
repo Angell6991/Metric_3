@@ -105,7 +105,8 @@ class   page_data:
                 self.color, 
                 self.font, 
                 self.dimentions, 
-                self.s
+                self.s,
+                self.dir_data_save
         )
         return  self.page.update()
 
