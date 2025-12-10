@@ -5,9 +5,11 @@ import  os
 from    .latex_render   import  LaTeX
 
 
-def cache_equations(dir_create_cache, color):
+##########################################################
+###-----------------created_dir_cache------------------###
+##########################################################
+def cache_dir(dir_create_cache):
 
-    ###-----------------created_dir_cache------------------###
     data_save   =   [
         "coordinates",
         "constants",
@@ -25,7 +27,10 @@ def cache_equations(dir_create_cache, color):
         os.makedirs(path, exist_ok=True)
 
 
-    ###----------------init_img_coordinates----------------###
+##########################################################
+###-------------created_img_coordinates----------------###
+##########################################################
+def cache_coordinates(dir_create_cache, color):
     coordinates_dat   =   pd.read_pickle(f"{dir_create_cache}/coordinates.dat")
     coordinates_dat   =   coordinates_dat.loc[0, "arr"]
     for i    in  range(len(coordinates_dat)):
@@ -33,15 +38,21 @@ def cache_equations(dir_create_cache, color):
         LaTeX(f"{text}", f"{dir_create_cache}/cache/coordinates/{i}", color)
 
 
-    ###-----------------init_img_constants-----------------###
+##########################################################
+###--------------created_img_constants-----------------###
+##########################################################
+def cache_constants(dir_create_cache, color):
     constants_dat   =   pd.read_pickle(f"{dir_create_cache}/constants.dat")
     constants_dat   =   constants_dat.loc[0, "arr"]
     for i   in  range(len(constants_dat)):
         text    =   sp.latex(sp.symbols(constants_dat[i]))
         LaTeX(f"{text}", f"{dir_create_cache}/cache/constants/{i}", color)
-    
+   
 
-    ###--------------init_img_escalar_curvature------------###
+##########################################################
+###-----------created_img_escalar_curvature------------###
+##########################################################
+def cache_es_curvature(dir_create_cache, color):
     escalar_curvatura_dat   =   pd.read_pickle(f"{dir_create_cache}/escalar_curvatura.dat")
     escalar_curvatura_dat   =   escalar_curvatura_dat.loc[0, "arr"]
     text_es    =   sp.latex(escalar_curvatura_dat)
