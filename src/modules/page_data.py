@@ -1,7 +1,8 @@
 import  flet    as  ft
 import  os
 
-from .page_data_menu_setting import menu_conf
+from    .page_data_menu_setting     import  menu_conf
+from    .page_data_view_equations   import  contet_box_down
 
 class   page_data:
 
@@ -12,6 +13,7 @@ class   page_data:
         self.dir_imagen =   dir_imagen
         self.dir_data_save  =   dir_data_save
         self.page   =   None
+        self.name_cal   =   "vacio"
         
         # Creamos el contenedor principal vacío que contendrá la lista
         self.container_list = ft.Container()
@@ -63,8 +65,6 @@ class   page_data:
             height=self.dimentions[1]*0.9*0.35,
         )
 
-        ###-------------------contet_box_down------------------###
-        
 
         ##########################################################
         ###--------------------construc_box--------------------###
@@ -82,7 +82,7 @@ class   page_data:
         )
 
         self.box_down    =   ft.Container(
-            content=ft.Column([]), 
+            content=ft.Column([ ]), 
             bgcolor=self.color[2], 
             padding=0,
             width=self.dimentions[0]*0.8,
@@ -99,6 +99,14 @@ class   page_data:
         self.box_up.height   =   self.dimentions[1]*0.4
         self.box_down.height =   self.dimentions[1]*0.48
         self.box_up.content  =   ft.Column([self.box_title, self.boton_back_expan()])
+        self.box_down.content   =   contet_box_down(
+                self.page, 
+                self.name_cal, 
+                self.color, 
+                self.font, 
+                self.dimentions, 
+                self.s
+        )
         return  self.page.update()
 
     def expan_container_up(self):
@@ -117,6 +125,10 @@ class   page_data:
         )
         return boton
 
+    def contraccion_container_up_and_name_cal(self, label):
+        self.name_cal   =   label
+        self.contraccion_container_up()
+        return self.page.update()
 
     ##########################################################
     ###------------------data _list------------------------###   
@@ -136,7 +148,7 @@ class   page_data:
                 border_radius=15,
                 padding=ft.padding.only(left=20, right=20, top=0, bottom=0),       
                 alignment=ft.alignment.center_left,
-                on_click=lambda e: self.contraccion_container_up(),
+                on_click=lambda e: self.contraccion_container_up_and_name_cal(label),
                 on_long_press=lambda    e: self.menu_conf(label),
                 height=self.dimentions[1]*0.9*0.1
             )
@@ -194,6 +206,7 @@ class   page_data:
     ###-------------def_menu_open_rename_delete------------###
     ##########################################################
     def menu_conf(self, label):
+        self.name_cal   =   label
         menu    =   menu_conf(
             page=self.page,
             color=self.color,
