@@ -9,7 +9,6 @@ import  os
 
 ###---------------title_calculate-----------------###
 def title(page, label, color, font, dimentions, s):
-    
     contet  =   ft.Container(
         content=ft.Text(str(label), color=color[7], font_family=font[1], size=dimentions[1]*0.48*0.2*0.3),
         bgcolor=color[2],
@@ -22,65 +21,58 @@ def title(page, label, color, font, dimentions, s):
             )
         ],
     )
-
     return contet
+
+###----------------generit_title------------------###
+def generit_title(color, font, s, icon, title, icon_size, left, right, top, bottom):
+    content   =   ft.Row(
+        [
+            ft.Container(
+                ft.Text(f"{icon}", font_family=font[2], size=s*icon_size, color=color[2]), 
+                bgcolor=color[1],
+                padding=ft.padding.only(left=left, right=right, top=top, bottom=bottom),
+                border_radius=5,
+                alignment=ft.alignment.center,
+                shadow=[
+                    ft.BoxShadow(
+                        color=color[1],
+                        blur_radius=4,
+                    )
+                ],
+            ),
+            ft.Text(f"{title}", font_family=font[1], size=s*0.4, color=color[0])
+        ],
+        spacing=10,
+    )
+    return  content
 
 ###-----------------view_result-------------------###
 def view_result(page, label, color, font, dimentions, s, dir_save):
- 
-    ###-----------------------------------------------###
-    title_coordenades   =   ft.Row(
-            [
-                ft.Container(
-                    ft.Text("y", font_family=font[2], size=s*0.6, color=color[2]), 
-                    bgcolor=color[1],
-                    padding=ft.padding.only(left=6, right=6, top=3, bottom=3),
-                    border_radius=5,
-                    alignment=ft.alignment.center,
-                    shadow=[
-                        ft.BoxShadow(
-                            color=color[1],
-                            blur_radius=4,
-                        )
-                    ],
-                ),
-                ft.Text("constants and coordinates", font_family=font[1], size=s*0.4, color=color[0])
-            ],
-            spacing=10,
-    )
-   
-    ###-----------------------------------------------###
-    title_escalar   =   ft.Row(
-            [
-                ft.Container(
-                    ft.Text("t", font_family=font[2], size=s*0.5, color=color[2]), 
-                    bgcolor=color[1],
-                    padding=ft.padding.only(left=6, right=6, top=3, bottom=3),
-                    border_radius=5,
-                    alignment=ft.alignment.center,
-                    shadow=[
-                        ft.BoxShadow(
-                            color=color[1],
-                            blur_radius=4,
-                        )
-                    ],
-                ),
-                ft.Text("Scalar curvature", font_family=font[1], size=s*0.4, color=color[0])
-            ],
-            spacing=10,
-    )
-    
-    ###-----------------------------------------------###
     content =   ft.Column(
         [
-            title_coordenades,
+            generit_title(color, font, s, "y", "Constants and coordinates", 0.6, 6, 6, 3, 3),
             ft.Divider(),
-            title_escalar,
+            
+            generit_title(color, font, s, "n", "Metric tensor", 1, 6, 6, -10, -10),
+            ft.Divider(),
+
+            generit_title(color, font, s, "o", "Inverse metric tensor", 1, 6, 6, -10, -10),
+            ft.Divider(),
+
+            generit_title(color, font, s, "p", "Connections", 1.1, 6, 6, -10, -10),
+            ft.Divider(),
+
+            generit_title(color, font, s, "q", "Riemann tensor", 1.5, 6, 6, -20, -20),
+            ft.Divider(),
+
+            generit_title(color, font, s, "r", "Ricci tensor", 1, 6, 6, -10, -10),
+            ft.Divider(),
+
+            generit_title(color, font, s, "t", "Scalar curvature", 0.5, 6, 6, 3, 3),
         ],
         spacing=5, 
         scroll=ft.ScrollMode.HIDDEN
     )
-    
     return  content
 
 
