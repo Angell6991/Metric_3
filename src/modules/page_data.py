@@ -82,7 +82,7 @@ class   page_data:
         )
 
         self.box_down    =   ft.Container(
-            content=ft.Column([ ]), 
+            content=ft.Column([]), 
             bgcolor=self.color[2], 
             padding=0,
             width=self.dimentions[0]*0.8,
