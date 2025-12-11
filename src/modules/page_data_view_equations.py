@@ -33,12 +33,6 @@ def generit_title(color, font, s, icon, title, icon_size, left, right, top, bott
                 padding=ft.padding.only(left=left, right=right, top=top, bottom=bottom),
                 border_radius=5,
                 alignment=ft.alignment.center,
-                shadow=[
-                    ft.BoxShadow(
-                        color=color[1],
-                        blur_radius=4,
-                    )
-                ],
             ),
             ft.Text(f"{title}", font_family=font[1], size=s*0.4, color=color[0])
         ],
@@ -70,7 +64,7 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
 
             generit_title(color, font, s, "t", "Scalar curvature", 0.5, 6, 6, 3, 3),
         ],
-        spacing=5, 
+        spacing=0, 
         scroll=ft.ScrollMode.HIDDEN
     )
     return  content
@@ -93,7 +87,7 @@ def contet_box_down(page, label, color, font, dimentions, s, dir_save):
             ),
             ft.Container(
                 content=view_result(page, label, color, font, dimentions, s, dir_save), 
-                padding=ft.padding.only(left=20, right=20, top=10, bottom=0),
+                padding=ft.padding.only(left=20, right=20, top=5, bottom=0),
                 width=dimentions[0]*0.82,
                 height=dimentions[1]*0.48*0.8,
             )
