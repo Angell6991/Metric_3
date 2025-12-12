@@ -87,7 +87,7 @@ def contet_box_down(page, label, color, font, dimentions, s, dir_save):
             ),
             ft.Container(
                 content=view_result(page, label, color, font, dimentions, s, dir_save), 
-                padding=ft.padding.only(left=20, right=20, top=5, bottom=0),
+                padding=ft.padding.only(left=20, right=20, top=5, bottom=5),
                 width=dimentions[0]*0.82,
                 height=dimentions[1]*0.48*0.8,
             )
