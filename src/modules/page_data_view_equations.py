@@ -1,7 +1,7 @@
-from typing import Container
 import  flet    as  ft 
 import  os
 
+from    .page_data_search_equations import  equation_search
 
 #####################################################
 ###------------def_part_of_box_down---------------###
@@ -45,8 +45,6 @@ def imagen(label, dir_save, name_imagen, dimentions, item):
     return ft.Image(
         src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
         height=dimentions[1]*0.48*0.1
-        # height=dimentions[1]*0.1,
-        # width=dimentions[0]*0.1,
     )
 
 ###----------------view_equations-----------------###
@@ -60,7 +58,6 @@ def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
         height=dimentions[1]*0.48*0.13,
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center,
-        # padding=ft.padding.only(left=0, right=0, top=-10, bottom=-10),
         shadow=[
             ft.BoxShadow(
                 color=color[2],
@@ -107,6 +104,7 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
             ft.Divider(),
             
             generit_title(color, font, s, "n", "Metric tensor", 1, 6, 6, -10, -10),
+            equation_search(label, color, font, dimentions, s, dir_save, "metric_tensor"),
             ft.Divider(),
 
             generit_title(color, font, s, "o", "Inverse metric tensor", 1, 6, 6, -10, -10),
