@@ -104,7 +104,7 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
             ft.Divider(),
             
             generit_title(color, font, s, "n", "Metric tensor", 1, 6, 6, -10, -10),
-            equation_search(label, color, font, dimentions, s, dir_save, "metric_tensor"),
+            equation_search(page, label, color, font, dimentions, s, dir_save, "metric_tensor"),
             ft.Divider(),
 
             generit_title(color, font, s, "o", "Inverse metric tensor", 1, 6, 6, -10, -10),
