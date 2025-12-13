@@ -40,11 +40,67 @@ def generit_title(color, font, s, icon, title, icon_size, left, right, top, bott
     )
     return  content
 
+###----------------view_equations-----------------###
+def equation_atatic(label, color, font, dimentions, s, dir_save, name_imagen):
+
+    ###------------------var_init---------------------###
+    box_equation    =   ft.Container(
+        content=ft.Row([ ft.Text(" ") ], scroll=ft.ScrollMode.HIDDEN),
+        bgcolor=color[2],
+        border_radius=5,
+        width=dimentions[0]*0.8,
+        alignment=ft.alignment.center,
+        padding=ft.padding.only(left=0, right=0, top=-100, bottom=-100),
+        shadow=[
+            ft.BoxShadow(
+                color=color[2],
+                blur_radius=5,
+            )
+        ],
+    )
+
+    box_title   = ft.Container(
+        content=ft.Text(" "),
+        width=dimentions[0]*0.8,
+        alignment=ft.alignment.center_right,
+        padding=ft.padding.only(left=0, right=5, top=0, bottom=0),
+    )
+    
+    ###--------search_imagen_and_conditionals---------###
+    def imagen(label, dir_save, name_imagen, dimentions, item):
+        return ft.Image(
+            src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
+            height=dimentions[1]*0.4,
+            width=dimentions[0]*0.4,
+        )
+
+    lista   =   sorted(os.listdir(f"{dir_save}/{label}/cache/{name_imagen}"))
+    lista   =   [imagen(label, dir_save, name_imagen, dimentions, i) for i   in  lista]
+    box_equation.content=ft.Row(lista, scroll=ft.ScrollMode.HIDDEN, spacing=0)
+     
+    if  name_imagen ==  "escalar_curvatura":    
+        box_title.content=ft.Row([])
+    
+    else:
+        box_title.content=ft.Text(f"{name_imagen}", font_family=font[0], color=color[2], size=s*0.25)
+
+    ###-------------------return----------------------###
+    content =   ft.Container(
+        content=ft.Column( [box_title, box_equation], spacing=2 ),
+        bgcolor=color[1],
+        border_radius=5,
+        padding=5,
+
+    )
+    return  content
+
 ###-----------------view_result-------------------###
 def view_result(page, label, color, font, dimentions, s, dir_save):
     content =   ft.Column(
         [
             generit_title(color, font, s, "y", "Constants and coordinates", 0.6, 6, 6, 3, 3),
+            equation_atatic(label, color, font, dimentions, s, dir_save, "constants"),
+            equation_atatic(label, color, font, dimentions, s, dir_save, "coordinates"),
             ft.Divider(),
             
             generit_title(color, font, s, "n", "Metric tensor", 1, 6, 6, -10, -10),
@@ -63,8 +119,9 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
             ft.Divider(),
 
             generit_title(color, font, s, "t", "Scalar curvature", 0.5, 6, 6, 3, 3),
+            equation_atatic(label, color, font, dimentions, s, dir_save, "escalar_curvatura"),
         ],
-        spacing=0, 
+        spacing=5, 
         scroll=ft.ScrollMode.HIDDEN
     )
     return  content
@@ -96,9 +153,5 @@ def contet_box_down(page, label, color, font, dimentions, s, dir_save):
         scroll=ft.ScrollMode.HIDDEN
     )
     return  content
-
-
-
-
 
 
