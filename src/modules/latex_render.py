@@ -9,14 +9,14 @@ def LaTeX(text_latex, dir_save, color):
         0.5, 
         0.5, 
         f"${text_latex}$", 
-        fontsize=50, 
+        fontsize=200, 
         ha='center', 
         va='center', 
         color=color
     )
     ax.axis('off')
 
-    plt.savefig(f"{dir_save}.png", dpi=1200, bbox_inches='tight', transparent=True)
+    plt.savefig(f"{dir_save}.png", dpi=600, bbox_inches='tight', transparent=True)
     plt.close()
 
 ###--------------texting_function-----------------###

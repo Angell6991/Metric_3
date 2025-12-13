@@ -41,7 +41,7 @@ def generit_title(color, font, s, icon, title, icon_size, left, right, top, bott
     return  content
 
 ###----------------view_equations-----------------###
-def equation_atatic(label, color, font, dimentions, s, dir_save, name_imagen):
+def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
 
     ###------------------var_init---------------------###
     box_equation    =   ft.Container(
@@ -50,7 +50,7 @@ def equation_atatic(label, color, font, dimentions, s, dir_save, name_imagen):
         border_radius=5,
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center,
-        padding=ft.padding.only(left=0, right=0, top=-100, bottom=-100),
+        padding=ft.padding.only(left=0, right=0, top=-10, bottom=-10),
         shadow=[
             ft.BoxShadow(
                 color=color[2],
@@ -70,8 +70,8 @@ def equation_atatic(label, color, font, dimentions, s, dir_save, name_imagen):
     def imagen(label, dir_save, name_imagen, dimentions, item):
         return ft.Image(
             src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
-            height=dimentions[1]*0.4,
-            width=dimentions[0]*0.4,
+            height=dimentions[1]*0.1,
+            width=dimentions[0]*0.1,
         )
 
     lista   =   sorted(os.listdir(f"{dir_save}/{label}/cache/{name_imagen}"))
@@ -99,8 +99,8 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
     content =   ft.Column(
         [
             generit_title(color, font, s, "y", "Constants and coordinates", 0.6, 6, 6, 3, 3),
-            equation_atatic(label, color, font, dimentions, s, dir_save, "constants"),
-            equation_atatic(label, color, font, dimentions, s, dir_save, "coordinates"),
+            equation_static(label, color, font, dimentions, s, dir_save, "constants"),
+            equation_static(label, color, font, dimentions, s, dir_save, "coordinates"),
             ft.Divider(),
             
             generit_title(color, font, s, "n", "Metric tensor", 1, 6, 6, -10, -10),
@@ -119,7 +119,7 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
             ft.Divider(),
 
             generit_title(color, font, s, "t", "Scalar curvature", 0.5, 6, 6, 3, 3),
-            equation_atatic(label, color, font, dimentions, s, dir_save, "escalar_curvatura"),
+            equation_static(label, color, font, dimentions, s, dir_save, "escalar_curvatura"),
         ],
         spacing=5, 
         scroll=ft.ScrollMode.HIDDEN
