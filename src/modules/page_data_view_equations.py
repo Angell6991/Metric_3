@@ -40,6 +40,15 @@ def generit_title(color, font, s, icon, title, icon_size, left, right, top, bott
     )
     return  content
 
+###----------------search_imagen------------------###
+def imagen(label, dir_save, name_imagen, dimentions, item):
+    return ft.Image(
+        src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
+        height=dimentions[1]*0.48*0.1
+        # height=dimentions[1]*0.1,
+        # width=dimentions[0]*0.1,
+    )
+
 ###----------------view_equations-----------------###
 def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
 
@@ -48,9 +57,10 @@ def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
         content=ft.Row([ ft.Text(" ") ], scroll=ft.ScrollMode.HIDDEN),
         bgcolor=color[2],
         border_radius=5,
+        height=dimentions[1]*0.48*0.13,
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center,
-        padding=ft.padding.only(left=0, right=0, top=-10, bottom=-10),
+        # padding=ft.padding.only(left=0, right=0, top=-10, bottom=-10),
         shadow=[
             ft.BoxShadow(
                 color=color[2],
@@ -66,14 +76,7 @@ def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
         padding=ft.padding.only(left=0, right=5, top=0, bottom=0),
     )
     
-    ###--------search_imagen_and_conditionals---------###
-    def imagen(label, dir_save, name_imagen, dimentions, item):
-        return ft.Image(
-            src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
-            height=dimentions[1]*0.1,
-            width=dimentions[0]*0.1,
-        )
-
+    ###----------------conditionals-------------------###
     lista   =   sorted(os.listdir(f"{dir_save}/{label}/cache/{name_imagen}"))
     lista   =   [imagen(label, dir_save, name_imagen, dimentions, i) for i   in  lista]
     box_equation.content=ft.Row(lista, scroll=ft.ScrollMode.HIDDEN, spacing=0)
