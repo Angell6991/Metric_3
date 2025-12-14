@@ -9,7 +9,7 @@ def LaTeX(text_latex, dir_save, color):
         0.5, 
         0.5, 
         f"${text_latex}$", 
-        fontsize=200, 
+        fontsize=150, 
         ha='center', 
         va='center', 
         color=color

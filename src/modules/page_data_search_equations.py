@@ -1,4 +1,5 @@
 import  pandas  as  pd
+import  sympy   as  sp
 import  flet    as  ft 
 import  os
 
@@ -16,17 +17,35 @@ def imagen(label, dir_save, name_imagen, dimentions, item):
         height=dimentions[1]*0.48*0.1
     )
 
-###---------------search_equations----------------###
-def equation_search(page, label, color, font, dimentions, s, dir_save, name_imagen):
-
-    ###-----------------init_search-------------------###
+###-----------------------------------------------###
+def search_box(page, label, color, font, dimentions, s, dir_save, name_imagen):
+    
+    ###-----------------------------------------------###
     def save_and_exit(e):
         if  dlg_modal.content.value ==  "":
             return  print("vacio")
         elif    dlg_modal.content.value !=  "":
             page.close(dlg_modal)
-            return  print("hi")
+            
+            data = pd.read_pickle(f"{dir_save}/{label}/{name_imagen}.dat")
+            data = data.loc[0, "arr"]
+            chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
 
+            result = data
+            for idx in chain_text:
+                result = result[idx]
+                print(result)
+
+            LaTeX(
+                sp.latex(sp.sympify(result)), 
+                f"{dir_save}/{label}/cache/{name_imagen}/{dlg_modal.content.value}", 
+                color[0]
+            )
+            
+            return  print(result)
+
+
+    ###-----------------------------------------------###
     dlg_modal = ft.AlertDialog(
         modal=True,
         elevation=20,
@@ -69,6 +88,14 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
         actions_alignment=ft.MainAxisAlignment.END,
     )
 
+    return  page.open(dlg_modal)
+
+
+#####################################################
+###---------------search_equations----------------###
+#####################################################
+def equation_search(page, label, color, font, dimentions, s, dir_save, name_imagen):
+
     ###------------------var_init---------------------###
     box_equation    =   ft.Container(
         content=ft.Row([ ft.Text("· · · · · ", color=color[0], font_family=font[1], size=s*0.5) ], scroll=ft.ScrollMode.HIDDEN),
@@ -92,7 +119,7 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center_right,
         padding=ft.padding.only(left=0, right=5, top=0, bottom=0),
-        on_click=lambda e:  page.open(dlg_modal),
+        on_click=lambda e:  search_box(page, label, color, font, dimentions, s, dir_save, name_imagen),
     )
 
     ###-------------------return----------------------###
