@@ -14,16 +14,21 @@ from    .latex_render   import  LaTeX
 def imagen(label, dir_save, name_imagen, dimentions, item):
     return ft.Image(
         src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
-        height=dimentions[1]*0.48*0.1
+        height=dimentions[1]*0.48*0.12
     )
 
-###-----------------------------------------------###
-def search_box(page, label, color, font, dimentions, s, dir_save, name_imagen):
-    
+
+#####################################################
+###---------------search_equations----------------###
+#####################################################
+def equation_search(page, label, color, font, dimentions, s, dir_save, name_imagen):
+
+
     ###-----------------------------------------------###
     def save_and_exit(e):
         if  dlg_modal.content.value ==  "":
             return  print("vacio")
+
         elif    dlg_modal.content.value !=  "":
             page.close(dlg_modal)
             
@@ -42,7 +47,13 @@ def search_box(page, label, color, font, dimentions, s, dir_save, name_imagen):
                 color[0]
             )
             
-            return  print(result)
+            box_equation.content    =   ft.Row(
+                    [ imagen(label, dir_save, name_imagen, dimentions, f"{dlg_modal.content.value}.png") ], 
+                    scroll=ft.ScrollMode.HIDDEN
+            )
+            title_label.value = f"search   {dlg_modal.content.value}"   
+            dlg_modal.content.value = ""
+            page.update()
 
 
     ###-----------------------------------------------###
@@ -77,7 +88,7 @@ def search_box(page, label, color, font, dimentions, s, dir_save, name_imagen):
             ft.FilledButton(
                 content=ft.Text("Back", font_family=font[1], size=s*0.5, color=color[0]),
                 bgcolor=color[3],
-                on_click=lambda e: page.close(dlg_modal),
+                on_click=lambda e: ( setattr(dlg_modal.content, 'value', ''), page.close(dlg_modal) ),
             ),
             ft.FilledButton(
                 content=ft.Text("Start", font_family=font[1], size=s*0.5, color=color[3]),
@@ -88,20 +99,13 @@ def search_box(page, label, color, font, dimentions, s, dir_save, name_imagen):
         actions_alignment=ft.MainAxisAlignment.END,
     )
 
-    return  page.open(dlg_modal)
-
-
-#####################################################
-###---------------search_equations----------------###
-#####################################################
-def equation_search(page, label, color, font, dimentions, s, dir_save, name_imagen):
 
     ###------------------var_init---------------------###
     box_equation    =   ft.Container(
         content=ft.Row([ ft.Text("· · · · · ", color=color[0], font_family=font[1], size=s*0.5) ], scroll=ft.ScrollMode.HIDDEN),
         bgcolor=color[2],
         border_radius=5,
-        height=dimentions[1]*0.48*0.13,
+        height=dimentions[1]*0.48*0.15,
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center,
         shadow=[
@@ -115,11 +119,11 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
     title_icon  =   ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
     title_label =   ft.Text("search", font_family=font[0], color=color[2], size=s*0.25)   
     box_title   =   ft.Container(
-        content=ft.Row([title_icon, title_label], spacing=4, alignment=ft.MainAxisAlignment.END,),
+        content=ft.Row([title_icon, title_label], spacing=5, alignment=ft.MainAxisAlignment.END,),
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center_right,
         padding=ft.padding.only(left=0, right=5, top=0, bottom=0),
-        on_click=lambda e:  search_box(page, label, color, font, dimentions, s, dir_save, name_imagen),
+        on_click=lambda e:  page.open(dlg_modal),
     )
 
     ###-------------------return----------------------###

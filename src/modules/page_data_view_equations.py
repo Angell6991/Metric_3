@@ -44,7 +44,7 @@ def generit_title(color, font, s, icon, title, icon_size, left, right, top, bott
 def imagen(label, dir_save, name_imagen, dimentions, item):
     return ft.Image(
         src=f"{dir_save}/{label}/cache/{name_imagen}/{item}", 
-        height=dimentions[1]*0.48*0.1
+        height=dimentions[1]*0.48*0.12
     )
 
 ###----------------view_equations-----------------###
@@ -55,7 +55,7 @@ def equation_static(label, color, font, dimentions, s, dir_save, name_imagen):
         content=ft.Row([ ft.Text(" ") ], scroll=ft.ScrollMode.HIDDEN),
         bgcolor=color[2],
         border_radius=5,
-        height=dimentions[1]*0.48*0.13,
+        height=dimentions[1]*0.48*0.15,
         width=dimentions[0]*0.8,
         alignment=ft.alignment.center,
         shadow=[
