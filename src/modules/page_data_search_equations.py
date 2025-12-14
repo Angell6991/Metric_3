@@ -32,6 +32,14 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
         elif    dlg_modal.content.value !=  "":
             page.close(dlg_modal)
             
+            title_icon.content  = ft.ProgressRing(
+                width=s*0.2, 
+                height=s*0.2, 
+                stroke_width=s*0.06,
+                color=color[2],
+            )   
+            page.update()
+
             data = pd.read_pickle(f"{dir_save}/{label}/{name_imagen}.dat")
             data = data.loc[0, "arr"]
             chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
@@ -39,7 +47,6 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
             result = data
             for idx in chain_text:
                 result = result[idx]
-                print(result)
 
             LaTeX(
                 sp.latex(sp.sympify(result)), 
@@ -52,6 +59,7 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
                     scroll=ft.ScrollMode.HIDDEN
             )
             title_label.value = f"search   {dlg_modal.content.value}"   
+            title_icon.content  =   ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
             dlg_modal.content.value = ""
             page.update()
 
@@ -116,7 +124,7 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
         ],
     )
 
-    title_icon  =   ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
+    title_icon  =   ft.Container(content=ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2]))
     title_label =   ft.Text("search", font_family=font[0], color=color[2], size=s*0.25)   
     box_title   =   ft.Container(
         content=ft.Row([title_icon, title_label], spacing=5, alignment=ft.MainAxisAlignment.END,),
