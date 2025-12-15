@@ -108,15 +108,19 @@ def view_result(page, label, color, font, dimentions, s, dir_save):
             ft.Divider(),
 
             generit_title(color, font, s, "o", "Inverse metric tensor", 1, 6, 6, -10, -10),
+            equation_search(page, label, color, font, dimentions, s, dir_save, "inverse_metric_tensor"),
             ft.Divider(),
 
             generit_title(color, font, s, "p", "Connections", 1.1, 6, 6, -10, -10),
+            equation_search(page, label, color, font, dimentions, s, dir_save, "symbol_christofell"),
             ft.Divider(),
 
             generit_title(color, font, s, "q", "Riemann tensor", 1.5, 6, 6, -20, -20),
+            equation_search(page, label, color, font, dimentions, s, dir_save, "riemann_tensor"),
             ft.Divider(),
 
             generit_title(color, font, s, "r", "Ricci tensor", 1, 6, 6, -10, -10),
+            equation_search(page, label, color, font, dimentions, s, dir_save, "ricci_tensor"),
             ft.Divider(),
 
             generit_title(color, font, s, "t", "Scalar curvature", 0.5, 6, 6, 3, 3),
