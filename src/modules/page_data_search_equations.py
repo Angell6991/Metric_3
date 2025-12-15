@@ -23,9 +23,22 @@ def imagen(label, dir_save, name_imagen, dimentions, item):
 #####################################################
 def equation_search(page, label, color, font, dimentions, s, dir_save, name_imagen):
 
+    ###-----------------------------------------------###
+    def check_errors(e):
+        if  f"{dlg_modal.content.value}".isdigit():
+            return  save_and_exit()
+        else:
+            page.close(dlg_modal)
+            title_label.value = f"search   error"   
+            dlg_modal.content.value = ""
+            box_equation.content    =   ft.Row(
+                [ft.Text("? ? ? ? ?", color=color[0], font_family=font[1], size=s*0.5)],
+                scroll=ft.ScrollMode.HIDDEN
+            )
+            return  page.update()
 
     ###-----------------------------------------------###
-    def save_and_exit(e):
+    def save_and_exit():
         if  dlg_modal.content.value ==  "":
             return  print("vacio")
 
@@ -113,7 +126,7 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
             ft.FilledButton(
                 content=ft.Text("Start", font_family=font[1], size=s*0.5, color=color[3]),
                 bgcolor=color[0],
-                on_click=save_and_exit,
+                on_click=check_errors,
             ),
         ],
         actions_alignment=ft.MainAxisAlignment.END,
