@@ -31,37 +31,49 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
 
         elif    dlg_modal.content.value !=  "":
             page.close(dlg_modal)
+           
+            lista   =   sorted(os.listdir(f"{dir_save}/{label}/cache/{name_imagen}"))
+            if f"{dlg_modal.content.value}.png" in  lista:
+
+                box_equation.content    =   ft.Row(
+                        [ imagen(label, dir_save, name_imagen, dimentions, f"{dlg_modal.content.value}.png") ], 
+                        scroll=ft.ScrollMode.HIDDEN
+                )
+                title_label.value = f"search   {dlg_modal.content.value}"   
+                dlg_modal.content.value = ""
+                page.update()
             
-            title_icon.content  = ft.ProgressRing(
-                width=s*0.2, 
-                height=s*0.2, 
-                stroke_width=s*0.06,
-                color=color[2],
-            )   
-            page.update()
+            else:
+                title_icon.content  = ft.ProgressRing(
+                    width=s*0.2, 
+                    height=s*0.2, 
+                    stroke_width=s*0.06,
+                    color=color[2],
+                )   
+                page.update()
 
-            data = pd.read_pickle(f"{dir_save}/{label}/{name_imagen}.dat")
-            data = data.loc[0, "arr"]
-            chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
+                data = pd.read_pickle(f"{dir_save}/{label}/{name_imagen}.dat")
+                data = data.loc[0, "arr"]
+                chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
 
-            result = data
-            for idx in chain_text:
-                result = result[idx]
+                result = data
+                for idx in chain_text:
+                    result = result[idx]
 
-            LaTeX(
-                sp.latex(sp.sympify(result)), 
-                f"{dir_save}/{label}/cache/{name_imagen}/{dlg_modal.content.value}", 
-                color[0]
-            )
-            
-            box_equation.content    =   ft.Row(
-                    [ imagen(label, dir_save, name_imagen, dimentions, f"{dlg_modal.content.value}.png") ], 
-                    scroll=ft.ScrollMode.HIDDEN
-            )
-            title_label.value = f"search   {dlg_modal.content.value}"   
-            title_icon.content  =   ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
-            dlg_modal.content.value = ""
-            page.update()
+                LaTeX(
+                    sp.latex(sp.sympify(result)), 
+                    f"{dir_save}/{label}/cache/{name_imagen}/{dlg_modal.content.value}", 
+                    color[0]
+                )
+                
+                box_equation.content    =   ft.Row(
+                        [ imagen(label, dir_save, name_imagen, dimentions, f"{dlg_modal.content.value}.png") ], 
+                        scroll=ft.ScrollMode.HIDDEN
+                )
+                title_label.value = f"search   {dlg_modal.content.value}"   
+                title_icon.content  =   ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
+                dlg_modal.content.value = ""
+                page.update()
 
 
     ###-----------------------------------------------###
