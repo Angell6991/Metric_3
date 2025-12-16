@@ -94,9 +94,21 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
                 data = data.loc[0, "arr"]
                 chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
 
-                result = data
-                for idx in chain_text:
-                    result = result[idx]
+                try:
+                    result = data
+                    for idx in chain_text:
+                        result = result[idx]
+
+                except IndexError:
+                    # Actualizar UI para indicar error de índice
+                    title_label.value = "syntax   error"
+                    box_equation.content = ft.Row(
+                        [ft.Text("? ? ? ? ?", color=color[0], font_family=font[1], size=s*0.5)],
+                        scroll=ft.ScrollMode.HIDDEN
+                    )
+                    title_icon.content = ft.Icon(ft.Icons.SEARCH, size=s*0.4, color=color[2])
+                    dlg_modal.content.value = ""
+                    return  page.update()
 
                 LaTeX(
                     sp.latex(sp.sympify(result)), 
