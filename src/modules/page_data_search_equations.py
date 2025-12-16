@@ -26,10 +26,35 @@ def equation_search(page, label, color, font, dimentions, s, dir_save, name_imag
     ###-----------------------------------------------###
     def check_errors(e):
         if  f"{dlg_modal.content.value}".isdigit():
-            return  save_and_exit()
+            
+            name_lista  =   [
+                "metric_tensor", "inverse_metric_tensor", 
+                "symbol_christofell", "riemann_tensor",
+                "ricci_tensor"
+            ]
+            check_list  =   [2, 2, 3, 4, 2]
+
+            data = pd.read_pickle(f"{dir_save}/{label}/{name_imagen}.dat")
+            data = data.loc[0, "arr"]
+            chain_text = [int(ch) for ch in str(dlg_modal.content.value)]
+
+            for i   in  range(len(name_lista)):
+                if  f"{name_imagen}"   ==  name_lista[i]:
+                    if  len(chain_text) ==  check_list[i]:
+                        return  save_and_exit()
+                    else:
+                        page.close(dlg_modal)
+                        title_label.value = f"syntax   error"   
+                        dlg_modal.content.value = ""
+                        box_equation.content    =   ft.Row(
+                            [ft.Text("? ? ? ? ?", color=color[0], font_family=font[1], size=s*0.5)],
+                            scroll=ft.ScrollMode.HIDDEN
+                        )
+                        return  page.update()
+
         else:
             page.close(dlg_modal)
-            title_label.value = f"search   error"   
+            title_label.value = f"syntax   error"   
             dlg_modal.content.value = ""
             box_equation.content    =   ft.Row(
                 [ft.Text("? ? ? ? ?", color=color[0], font_family=font[1], size=s*0.5)],
