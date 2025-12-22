@@ -41,7 +41,7 @@ pip install pandas sympy flet matplotlib
 The application is developed with Flet and has the ability to be multiplatform 
 ("PC" or "mobile"). However, it has only been compiled for Android:
 
-<!-- [APK download link](https://github.com/Angell6991/Nur_cal/releases/download/v0.1.0-beta/nur-cal.apk) -->
+[APK download link](https://github.com/Angell6991/Metric_3/releases/download/v0.1.0-beta/metric_3.apk)
 
 If you wish to have the version for iPhone or PC, you are invited to download the 
 source code and compile it by 
